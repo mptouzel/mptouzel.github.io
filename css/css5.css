@@ -1,0 +1,25 @@
+#topbar {
+  background: Purple;  
+  text-decoration: none;
+}
+
+#backtotop {
+   background: OrangeRed;
+   text-decoration: none
+}
+
+#backtotop a:hover,
+#backtotop a:visited:hover {
+   background: Purple;
+    text-decoration: none
+}
+
+#content a { color: Purple; text-decoration: none}
+#content a: link {color: Purple;text-decoration: none}
+#content a:hover, a:visited:hover { color: Limegreen;text-decoration: none }
+
+.top-three {
+  margin-top: 3cm;
+}
+
+

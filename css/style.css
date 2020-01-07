@@ -1,0 +1,98 @@
+#topbar {
+  top: 0;
+  min-height: 2.2em;
+  line-height: 2.2em;
+  background: Purple;
+    text-decoration: none;
+}
+
+.navbox {
+  float: left;
+  width: 25%;
+  max-width: 15em;
+  background: inherit;
+    text-decoration: none;
+}
+.navbox a,
+.navbox a:visited {
+  display: block;
+  padding-left: 1em;
+  color: White;
+  font-size: 90%;
+    text-decoration: none;
+}
+.navbox a:hover,
+.navbox a:visited:hover {
+  background: White;
+  color: Black;
+  text-decoration: none;
+}
+
+.top-three {
+  margin-top: 3cm;
+}
+#backtotop {
+   position: fixed;
+   right: 0;
+   bottom: 0;
+   z-index: 1;
+   background: red;
+   display: block;
+   text-align: center;
+   font-size: 150%;
+   text-decoration: none;
+}
+#backtotop a,
+#backtotop a:visited {
+   padding-left: 1em;
+   padding-right: 1em;
+   padding-top: 0.25em;
+   padding-bottom: 0.25em;
+   display: block;
+   color: White;
+    text-decoration: none;
+}
+
+#content {
+  margin-left: 1em;
+  margin-right: 1em;
+  max-width: 60em;
+}
+#content a { color: DarkOrange; }
+#content a:link, { color: Purple; text-decoration: none; }
+#content a:visited { color: Gray; text-decoration: none; }
+#content a:hover, a:visited:hover { color: Purple;text-decoration: none; }
+
+
+h1 {
+  font-weight: normal;
+  font-size: 140%;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-top: 1em;
+}
+
+h2 {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 100%;
+  margin-bottom: 0.25em;
+  margin-top: 0.25em;
+}
+
+body { 
+  margin: 0;
+  line-height: 1.4;
+  font-family: Helvetica,Arial,"Liberation Sans",sans-serif;
+}
+
+table, th, td {
+    border: None;
+}
+td, th {
+    padding: 0;
+}
+
+blockquote {
+    margin-top: -1em;
+}
