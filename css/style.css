@@ -4,12 +4,14 @@
   line-height: 2.2em;
   background: Purple;
     text-decoration: none;
+      margin: auto;
+      text-align: center;
 }
 
 .navbox {
   float: left;
   width: 25%;
-  max-width: 15em;
+  max-width: 30em;
   background: inherit;
     text-decoration: none;
 }
@@ -53,16 +55,18 @@
     text-decoration: none;
 }
 
-#content {
+/*.content {
   margin-left: 1em;
   margin-right: 1em;
-  max-width: 60em;
-}
-#content a { color: DarkOrange; }
-#content a:link, { color: Purple; text-decoration: none; }
-#content a:visited { color: Gray; text-decoration: none; }
-#content a:hover, a:visited:hover { color: Purple;text-decoration: none; }
+  max-width: 50px;/*60em;
+  margin: auto;
 
+}*/
+/*.content a { color: DarkOrange; }
+.content a:link, { color: Purple; text-decoration: none; }
+.content a:visited { color: Gray; text-decoration: none; }
+.content a:hover, a:visited:hover { color: Purple;text-decoration: none; }
+*/
 
 h1 {
   font-weight: normal;
