@@ -108,6 +108,12 @@ blockquote {
     margin-top: -1em;
 }
 
+table#albums 
+{
+    border-collapse:separate;
+    border-spacing:0 30px;
+}
+
 brr
 {
     content: " " !important;
