@@ -114,6 +114,28 @@ table#albums
     border-spacing:0 30px;
 }
 
+/*.img{position:absolute;z-index:1;}*/
+
+#canvas{
+    margin: 0;
+    padding: 0;
+    /*display: block;*/
+}
+
+/*#container{
+    display:inline-block;
+    max-width:100%; 
+    height:auto;
+    /*margin: 0 auto; 
+    position:relative;}*/
+.container {
+    display: flex;
+    align-items: bottom;
+}
+.container hr {
+    width: 100%;
+}
+
 brr
 {
     content: " " !important;
