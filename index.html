@@ -30,11 +30,11 @@
 <div class="content">
 
 <div id="topbar">
-<!-- <div class="navbox"><a href="index.html#top">home</a></div> -->
-<div class="navbox"><a href="index.html#research">research</a></div>
-<div class="navbox"><a href="index.html#publications">publications</a></div>
-<div class="navbox"><a href="index.html#teaching">teaching</a></div>
-<div class="navbox"><a href="index.html#advocacy">service</a></div>
+<div class="navbox"><a href="index.html">Maximilian Puelma Touzel</a></div>
+<div class="navbox"><a href="research.html">research</a></div>
+<div class="navbox"><a href="publications.html">publications</a></div>
+<div class="navbox"><a href="teachingservice.html">teaching/service</a></div>
+<div class="navbox"><a href="cv.html">cv</a></div>
 <div id="backtotop"><a href="index.html#top">â†‘</a></div>
 </div>
 
@@ -48,7 +48,7 @@
 <h0 id="home" padding=0>Maximilian Puelma Touzel</h0>
 </td>
 <td><!--  valign="middle"> -->
-<canvas id="canvas" height="40" width="650"></canvas>  <!-- background: url('img/matta_mashup.jpg')"  -->
+<canvas id="canvas" height="40" width="680"></canvas>  <!-- background: url('img/matta_mashup.jpg')"  -->
 
     <script src="./utils.js"></script>
     <script src="./ball.js"></script>
@@ -57,7 +57,7 @@
       var canvas = document.getElementById('canvas'),
           context = canvas.getContext('2d'),
           balls = [],
-          numBalls = 300,
+          numBalls = 800,
           bounce = -1.0;
 
       for (var radius, ball, i = 0; i < numBalls; i++) {
@@ -65,8 +65,8 @@
         ball = new Ball(radius);
         ball.mass = radius;
         ball.x = 0;//i * 100;
-        ball.y = i * 50;
-        ball.vx = 5;//Math.random() * 5 - 2.5;
+        ball.y = i * numBalls;
+        ball.vx = 3;//Math.random() * 5 - 2.5;
         ball.vy = (Math.random() - 0.5)* 10 ;
         balls.push(ball);
       }
@@ -156,7 +156,9 @@
         window.requestAnimationFrame(drawFrame, canvas);
         context.clearRect(0, 0, canvas.width, canvas.height);
         numBalls = balls.length
-
+        if (numBalls < 100) {
+            exit()
+        }
         balls.forEach(move);
         for (var ballA, i = 0, len = numBalls - 1; i < len; i++) {
           ballA = balls[i];
@@ -199,7 +201,6 @@ PhD, Physics (IMPRS Physics of biological and complex systems), University of GÃ
 MSc, Physics, University of Toronto<br>
 BSc, Physics &amp; Mathematics, University of Toronto<br>
 </td>
-
 <td width="30%" align="right" valign="top">
 <img src="img/DSC_0292.JPG" style="width:77%;height:77%;" border=1><br>
 <span style="direction: rtl; unicode-bidi: bidi-override;">cebeuq [tod] alim [ta] mtamleup</span><br>
@@ -208,33 +209,16 @@ BSc, Physics &amp; Mathematics, University of Toronto<br>
 <a href="https://orcid.org/0000-0002-8211-6503"><i class="ai ai-orcid"></i></a> &nbsp;
 <a href="https://github.com/mptouzel"><i class="fa fa-github"></i></a> &nbsp; 
 <a href="https://www.linkedin.com/in/maximilian-puelma-touzel-b170595/"><i class="fa fa-linkedin"></i></a>&nbsp;&nbsp;</font>
-
 </td>
 </tr>
 </table>
-<br>
-<center>
-    Check out our upcoming RLDM workshop on <a href="https://sites.google.com/mila.quebec/soc-rldm/home">Social norms, influence, and alignment in human and machine decision-making</a>!
-</center>
-<p>
-My research interests in social dilemmas and alignment problems lie at the intersection of behavioural sciences and artificial intelligence/machine learning. I seek quantiative answers to scientific questions about the inference and decision-making in individual human behaviour and to the complex system dynamics of interacting agents, <em>e.g.</em> us. Towards this end, I coordinate interdisciplinary collaborations with domain experts in which I contribute my expertise in mathematical theory for decision-making agent learning, the machine learning of thier model parameters, and a whole lot of data wrangling.
-</p>
-<p>
-I made my way here over two decades from theoretical biophysics and computational neuroscience. It's been a virtuous circle of pursuing problems of increasing scale and scope of function while gaining proficiency in the approaches suited to quantifying their increased complexity. The payoff is now being able to tackle important questions with a versatile kit of powerful quantitative analysis tools. Two current applications I am excited about are:
-<ul>
-    <li>Using topic correlations inferred from open-ended responses to questionnaires about climate change beliefs (here about a tax on carbon) in pursuit of better climate and policy communication. Below is a projection of the learned topic model onto 2 topics (red/blue). (Note this corpus has been stemmed so 'reduc' here accounts for 'reduction', 'reducing', etc.). [with E. Lachapelle (SciPo, UdeM)]</li>
-    <center><img src="img/topic18embedding.png" style="max-width:70%;height:auto;" align="middle" border="1"></center>
-<br>
-    <li>Using reward maps inferred with inverse reinforcement learning from dynamic-risk task behaivour as an efficient, language-free proxy for subject impulsivity scores. [with P. Cisek (Neuroscience, UdeM)]</li>
-     <center><img src="img/papers/2022IRL.png" style="max-width:30%;height:auto;" align="middle"></center>
-</ul>
-See <a href="index.html#top">Research</a> for more details.
-</p>
 
-<br>
+<!-- <center>
+    Check out our upcoming RLDM workshop on <a href="https://sites.google.com/mila.quebec/soc-rldm/home">Social norms, influence, and alignment in human and machine decision-making</a>
+</center> -->
 <b>News:</b>
 <br>
-<div style="height: 200px; overflow-y: scroll;">
+<div style="height: 150px; overflow-y: scroll;">
 
 <table width="100%" align="right" valign="top" style="font-style:italic">
 
@@ -256,7 +240,7 @@ See <a href="index.html#top">Research</a> for more details.
 
 <tr>
 <td width="10%"> Mar. 2022</td>
-    <td> Submission on agent abstraction accepted to <a href="https://sites.google.com/view/collective-learning"><em>From cells to societies: learning across scales</em> (ICML workshop)</a>. </td>
+    <td> Submission on agent abstraction accepted to <a href="https://sites.google.com/view/collective-learning"><em>From cells to societies: learning across scales</em> (ICLR workshop)</a>. </td>
 </tr>
 
 <tr>
@@ -375,295 +359,31 @@ See <a href="index.html#top">Research</a> for more details.
 </table>
 ...
 </div>
-
 <hr style="width: 100%; border: 2px solid gray;">
+<br>
 
-<h1 id="publications">Publications & preprints</h1>
-<table width="100%" valign="top" id="albums" cellspacing="0">
-
-<!-- 
-<tr>
-<td width="20%"> 
-<img src="img/papers/2022IRL.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td>
-    <b>Latent topics underlying perceptions of the Canadian tax on carbon</b><br>
-    Puelma Touzel M, Lachapelle, E. <br>
-    <em>in preparation</em><br>
-    <small>[&nbsp;<a href="https://mptouzel.github.io/pdf/manuscript.pdf">draft</a>&nbsp;]</small>
-</td> -->
-
-<!-- 
-<tr>
-<td width="20%"> 
-<img src="img/papers/2022IRL.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td>
-    <b>Inverse reinforcement learning of human behaviour in a risk-based decision-making task</b><br>
-    Spinney S, Lajoie G, Rish I, Puelma Touzel M. <br>
-    <em>in preparation</em><br>
-    <small>[&nbsp;<a href="https://mptouzel.github.io/pdf/manuscript.pdf">draft</a>&nbsp;]</small>
-</td> -->
-
-<tr>
-<td width="20%"> 
-<img src="img/papers/diplomacy.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td>
-    <b>Summarizing Societies: Agent Abstraction in Multi-Agent Reinforcement Learning</b><br>
-    Puelma Touzel M*, Me'marian A*, Bhati R, Riemer M, Rish I.<br>
-    <em>From Cells to Societies: Learning Across Scales Workshop, ICML </em>(2022). <br>
-    <small>[&nbsp;<a href="">workshop paper</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-<img src="img/papers/2021mixing.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td>
-    <b>Continual Learning In Environments With Polynomial Mixing Times</b><br>
-    Riemer M*, Chandra Raparthy S*, Cases I, Subbaraj G, Puelma Touzel M, Rish I.<br>
-    <em>Ecological Reinforcement Learning Workshop, NeurIPS </em>(2021). <br>
-    <small>[&nbsp;<a href="https://arxiv.org/abs/2112.07066">workshop paper</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-<img src="img/papers/2021PGD.png" style="max-width:100%;height:auto;" align="left">
-</td>
-<td>
-    <b>Deliberation gated by opportunity cost adapts to context with urgency</b><br>
-    Puelma Touzel M, Cisek P, Lajoie G. <br> 
-    <em>In revision</em>.<br>
-    <!--<em>PLoS Computational Biology</em> (2022).<br>
-    <small>[&nbsp;<a href="https://www.biorxiv.org/content/10.1101/2021.07.31.452742v1">journal</a>&nbsp;-->
-    <small>[&nbsp;<a href="https://www.biorxiv.org/content/10.1101/2021.07.31.452742v1">preprint</a>&nbsp;|&nbsp;<a href="pdf/PGD_example_simulaton.mp4">supp. video</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-<img src="img/papers/jac_prod_diagram.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td>
-    <b>On Lyapunov Exponents for RNNs: Understanding information propogation using dynamical systems tools</b><br>
-    Puelma Touzel M*, Vogt R*, Shlizerman E, Lajoie G. <br> 
-    <em>Frontiers in Applied Mathematics & Statistics</em> (2022).<br>
-    <small>[&nbsp;<a href="https://www.frontiersin.org/articles/10.3389/fams.2022.818799/full">journal</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-<img src="img/papers/2020diffexpr.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td>
-    <b>Inferring the immune response from repertoire sequencing</b><br>
-    Puelma Touzel M, Walczak A, Mora T.  <br>
-    <em>PLoS Computational Biology</em> (2020).<br>
-    <small>[&nbsp;<a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007873">journal</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-<img src="img/papers/2019nnRNN.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td>
-    <b>Non-normal Recurrent Neural Network (nnRNN): learning long time dependencies while improving expressivity with transient dynamics</b>  <br>
-    Goyette K, Kerg GC, Puelma Touzel M, Gidel G, Vorontsov E, Bengio Y, Lajoie G.<br>
-    <em>NeurIPS </em>(2019).<br>
-    <small>[&nbsp;<a href="https://papers.nips.cc/paper/2019/file/9d7099d87947faa8d07a272dd6954b80-Paper.pdf">proceedings</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-<img src="img/papers/2019fluxtube.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td> 
-    <b>Statistical mechanics of spike events underlying phase space partitioning and sequence codes in large-scale models of neural circuits</b> <br>
-    Puelma Touzel M, & Wolf F. <br>
-    <em>Physical Review E</em> (2019).<br>
-    <small>[&nbsp;<a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.99.052402">journal</a>&nbsp;|
-    <a href="pdf/PuelmaTouzel_Partitioning_ms.pdf">preprint</a>&nbsp;|
-    <a href="pdf/PuelmaTouzel_Partioning_suppvideo.avi">supp. video</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-    <img src="img/papers/2018twin.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td> 
-    <b>Precise tracking of vaccine-responding T-cell clones reveals convergent and personalized response in identical twins</b> <br>
-    Pogorelyy M, Minervina A, Puelma Touzel M, Sycheva A, Komech E, Kovalenko E, Karganova G, Egorov E, Komkov A, Chudakov D, Mamedov I, Mora T, Walczak A, Lebedev Y.<br>
-    <em> PNAS</em> (2018).<br>
-    <small>[&nbsp;<a href="https://www.pnas.org/content/115/50/12704">journal</a>&nbsp;|
-    <a href="https://www.biorxiv.org/content/early/2018/04/13/300343">preprint</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-</td>
-<td> 
-    <b>Origin of Public Memory B Cell Clones in Fish After Antiviral Vaccination</b><br>
-    Magadan S, Jouneau L, Puelma Touzel M, Marillet S, Chara W, Six A, Quillet E, Mora T, Walczak A, Cazals F, Sunyer O, Fillatreau S, Boudinot P. <br>
-    <em>Frontiers in Immunology</em> (2018).<br>
-    <small>[&nbsp;<a href="https://doi.org/10.3389/fimmu.2018.02115">journal</a>&nbsp;] </small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-        <img src="img/papers/2017invasion.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td> 
-    <b>Invasions of Host-Associated Microbiome Networks</b><br>
-    Murall CL, Abbate JL, Puelma Touzel M, Allen-Vercoe E, Alizon S, Froissart R, & McCann K.<br>
-    Chapter in "Networks of Invasion: Empirical Evidence and Case Studies". <br>
-    <em>Advances in Ecological Research</em> (2017).<br>
-    <small>[&nbsp;<!--<a href="">bib</a>&nbsp;| -->
-    <a href="http://doi.org/10.1016/bs.aecr.2016.11.002">journal</a>&nbsp;| 
-    <a href="pdf/Murall et al. - Networks of Invasion Empirical Evidence and Case Studies - 2017.pdf">pdf</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-     <img src="img/papers/2015thesis.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td> 
-    <b>Cellular dynamics and stable chaos in balanced networks</b><br> 
-    <em>PhD Thesis, University of Goettingen</em> (2015).<br>
-    <small>[&nbsp;<a href="https://ediss.uni-goettingen.de/handle/11858/00-1735-0000-0028-869D-B">online library</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-     <img src="img/papers/2015resonance.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td> 
-    <b>Complete Firing-Rate Response of Neurons with Complex Intrinsic Dynamics</b> <br> 
-    Puelma Touzel M, & Wolf F. <br>
-    <em>PLoS Computational Biology</em> (2015). <br>
-    <small>[&nbsp;<!--<a href="">bib</a>&nbsp;| -->
-    <a href="http://doi.org/10.1371/journal.pcbi.1004636">journal</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-     <img src="img/papers/2014Wolfrev.png" style="max-width:70%;height:auto;" align="left">
-</td>
-<td> 
-    <b>Dynamical models of cortical circuits</b><br>
-    Wolf F, Engelken R, Puelma-Touzel M, Weidinger JDF, & Neef A. <br> 
-    <em>Current Opinion in Neurobiology</em> (2014).<br>
-    <small>[&nbsp;<!--<a href="">bib</a>&nbsp;| -->
-    <a href="http://doi.org/10.1016/j.conb.2014.01.017">journal</a>&nbsp;| 
-    <a href="pdf/Wolf et al. - Current Opinion in Neurobiology - 2014.pdf">pdf</a>&nbsp;]</small>
-</td>
-</tr>
-
-<tr>
-<td width="20%"> 
-    <img src="img/papers/2007QSD.png" style="max-width:90%;height:auto;" align="left">
-</td>
-<td>  
-    <b>Optimal bounded-error strategies for projective measurements in nonorthogonal-state discrimination</b><br> 
-    Touzel MAP, Adamson RBA, & Steinberg AM. <br>
-    <em>Physical Review A</em> (2007).<br>
-    <small>[&nbsp;<!--<a href="publications_bib.html#Touzel:2007p9833">bib</a>&nbsp;| -->
-    <a href="http://doi.org/10.1103/PhysRevA.76.062314">journal</a>&nbsp;| 
-    <a href="https://arxiv.org/abs/0708.1540">preprint</a>&nbsp;]</small>
-</td>
-</tr>
-</table> 
-
-<h1 id="research">Research</h1>
+<h1 padding=0>Summary</h1>
 
 <p>
-    How do we abstract the world in a way that facilitates choosing actions to achieve a goal? How does the uncertainty in our beliefs about the world transform into uncertainty about how valuable are the actions we can take in it? Why do we sometimes make the effort to reduce this uncertainty, while other times we simply account for it, or even neglect it outright, even at our peril? These questions illustrate <b> the complex interplay between efficiently representating the world and profitably acting in it</b>. They also point to a central question: <b>how do we form and select goals to pursue?</b> We are a social species, and social and identity factors can play a dominant role in this process within an individual, but also collectively within a society.
-</p>
+Trained in theoretical biophysics and computational neuroscience, I have broad research interests at the intersection of behavioural sciences and artificial intelligence/machine learning. I seek quantiative answers to 
+<ul>
+<li> to scientific questions about the inference and decision-making in human individual and group behaviour and </li>
+<li>to the complex system dynamics of interacting learning agents, <em>e.g.</em> us. </li>
+</ul>
+My current research focusses on <em>social dilemmas and alignment problems</em>. Towards this end, I coordinate interdisciplinary collaborations with domain experts in which I contribute my expertise in mathematical theory for decision-making agent learning, the machine learning of thier model parameters, and a whole lot of data wrangling. Here is a graphic of the kinds of data and analysis I'm an currently working on:
+
+<!--  I've pursued problems of increasing scale and scope of function while gaining proficiency in the approaches suited to quantifying their increased complexity. I've picked up a versatile kit of powerful quantitative analysis tools in process.  -->
+<br>
+<br>
 <center>
 <img src="img/SocioPsychNeuro-01.jpg" style="max-width:90%;height:auto;" align="middle" border=1>
+<br>
+<br>
+See <a href="research.html">Research</a> and <a href="publications.html">Publications</a> sections for more details.
 </center>
 
-<!-- 
-<p>
-    Dynamics as iterates in an data-driven learning algorithm, ongoing neural activity, or agent-environment interaction is central to this interplay. I am interested in <b> how the dynamics of learning agents (be it humans, other animals, or machines) implement decision-making.</b> 
-    An exciting space for these questions lies in the intersection of neural dynamics, reinforcement learning, and the cognitive and systems neuroscience of decision-making. I develop theoretical and computational approaches in collaboration with diverse experimental groups.
-    -->
-<!-- I use both <a href="https://www.cell.com/trends/cell-biology/fulltext/S0962-8924(15)00194-4">Fig.1 & 7</a>  theoretical and computational approaches to answer questions driven by analysis of (big, when necessary) datasets generated in experimental collaborations.</p>-->
-<!-- <h1 id="CV">CV</h1> -->
-<p>
-    Many of the pressing societal problems of our time, from extremism to climate change action, rest on how we form beliefs while consuming information and dialoguing in social venues, increasingly curated by algorithms, on a range of scales from peer-to-peer extending to large, online communities. The form of the information exchanged in these fundamentally social interactions and the form of the mediums over which they occur can play a role in the collective decisions we make as a society through the way they bias how individuals decide to believe.
-    <!--I am currently working with cognitive neuroscientists and psychologists on the dynamics of human decision-making and how it impacts the <a href="https://www.penguinrandomhouse.com/books/566677/human-compatible-by-stuart-russell/">AI alignment problem</a>. -->
-    <!-- How can we quantify how we assess risk and how this capacity develops? -->
-    <!-- As a mathematical theory of agent-environment interactions, reinforcement learning is useful when interpreting human decision-making.  -->
-    I am currently collaborating with psychologists and social scientists in order to tease apart the interplay of belief, identity, and decision-making bias through laboratory experiments and population data. By better accounting for the effects of the social milieu in which individuals come to believe who they are and what is important to them, we can better align the algorithms that structure our collective discourse, as well as develop prosocial, assistive technologies in that space.
-    <!--through decision-making tasks and large questionnaires. Using climate change as an application, I have also begun research into how this risk assessment is impacted by our existing beliefs.-->
-</p>
-<p>
-    Decision-making and belief formation is an ongoing-process not easily accessed via single tasks performed in restrictive environments. I am currently funded under the Canadian Excellence Research Chair in AI held by <a href="https://sites.google.com/site/irinarish/">Irina Rish</a>. With students in her group, we analyze the subtle dynamics that emerge in multi-agent, continual reinforcement learning settings, providing a sandbox to help understand complex social decision-making phenomena in natural systems.
-</p>
-<p>
-    Finally, I have a long-standing interest in statistical physics and, in particular, using it to understand the information processing of a given system dynamics. One aim is to further ground biological and machine learning in physical dynamics by extending the formalism of information thermodynamics to these settings. Here, a thermodynamics of the system reveals information processing as buried in the system's entropy production.
-</p>
+<p style="margin-bottom:1cm;"></p>
 
-<h1>Career</h1>
-<!-- <b><i>curriculum vitae</i> [</b>   (noun) <i>latin</i>. Trajectory of one's life.<b>]</b> -->
-
-<p>
-    With <a href="https://www.physics.utoronto.ca/~aephraim/">A. Steinberg</a> (UofT), I was first exposed to the physical limits of information processsing in quantum information science.
-    Inspired by the science of <a href="https://press.princeton.edu/titles/9911.html">successful forays of physicists into biology</a>, I realized neuroscience offers a fascinating area to articulate this idea. With <a href="https://www.uni-goettingen.de/de/58058.html">F. Wolf</a> at the Max Planck Institute of Dynamics and Self-organization, I focussed my attention on the dynamics of neural circuits. 
-    I then rounded out my biology and data analysis while developing inference frameworks for probabilistic models of adaptive immune repertoires with <a href="https://www.phys.ens.fr/~awalczak/">A. Walczak</a> and <a href="http://www.phys.ens.fr/~tmora/">T. Mora</a> at the ENS in Paris.
-</p>
-
-<p>
-    Emerging from this training with the sense that the dynamics of inference serves as a powerful lens to understand learning systems, I returned to Canada in 2018 on an <a href="https://ivado.ca/en">IVADO</a> post-doctoral fellowship to work on dynamical systems approaches to deep learning in recurrent neural networks supervised by <a href="https://mila.quebec/en/yoshua-bengio/">Y. Bengio</a> (UdeM) and <a href="https://dms.umontreal.ca/~lajoie/">G. Lajoie</a> (UdeM). 
-    It became clear to me that forming good representations is intricately linked to what decisions they serve. I started a collaboration with <a href="http://www.cisek.org/pavel/">P. Cisek</a> (UdeM) in which I used bounded rational RL agent models to provide the first reward-rate optimal solution of the decades-old 'tokens task' studied in his lab and to show the particular way in which the macaques in the dataset I analyzed behave suboptimally on the task. This normative approach ignores their social milieu: an attentive, yet controlling human providing juice according to an opaque rule varying over longer timescales in a non-transparent way. Stepping towards realism, I articulated a heuristic strategy more robust to an adversary and that gives a quantitative match to behaviour and a qualitative match to neural activity used to validate the fitted models. This outcome reinforced to me the importance of acknowledging the social factors at play in any given decision-making context. 
-</p>
-
-<p>
-    With a final step-up in scale, I am now pursuing questions arising from social psychology and sociology through the lens of my quantitative training in multiscale dynamics and modelling through both in-the-lab experiments and in-the-field studies. This move was also motivated by my desire to work on social dilemma problems like climate change where social factors can influence collective and individual beliefs. I hope that this work both articulates the challenge of and opportunity to enhance communication on these social dilemmas. 
-</p> 
-
-<h1 id="teaching">Teaching Experience</h1>
-<p>
-<ul>
-    <li>lectures for G. Lajoie's graduate-level dynamical systems course UdeM 2019, 2020, 2021, 2022</li>
-    <li>lectures of F. Wolf's computational neuroscience course, U. Goettingen 2013,2014,2015</li>
-    <li>various seminar courses organized and lectured in, e.g. one on Information Theory and Dynamical Systems. Here are some <a href="pdf/EntropyofDynSysReview.pdf">lecture notes </a>  on entropy in dynamical systems.</li>
-    <li> summer school lectures in computational neuroscience. Here are slides from a lecture on <a href="pdf/ModellingPhilo_tutorial.pdf">modelling principles and practises</a> from LACONEU 2014.</li>
-    <li>principal organizer for Goettingen's Computational neuroscience summer school (2012-2015), overseeing a transition to an advanced content format made possible by a successful grant application.</li>
-    <li>Physics Department teaching assistant back in Toronto. I worked with <a href="https://faraday.physics.utoronto.ca/~harrison/">David Harrison</a> over a couple of years to refine the pedagogy in his course on physics for non-scientists.</li>
-</ul>
-</p>
-
-<h1 id="advocacy">Advocacy & Service</h1>
-<p>
-<ul>
-    <li> I want to help build communities around my research interests. To that end, I have organized conferences, e.g. Canada's first <a href="http://www.physics.mcgill.ca/ai2019/">Physics & AI Workshop</a>, a <a href="https://sites.google.com/mila.quebec/neuroaiworkshop">neuroAI workshop</a> at NeurIPS, a <a href="https://sites.google.com/mila.quebec/senai/home">symposium on explanation in neuroscience and AI</a>, and an upcoming RLDM workshop on social decision-making & AI. I also co-organize Mila's <a href="https://sites.google.com/view/neural-ai/">neuroAI reading group</a>. </li>
-    <!--<li> I review for journals; begrudgingly when, e.g. with <em>Physical Review X</em>, they are behind paywalls. </li>-->
-    <li><a href="https://elifesciences.org/">eLife</a> is an innovative open-access journal friendly to behaviour and <a href="https://elifesciences.org/subjects/physics-living-systems">physics of living systems</a> research. Please consider submitting your work there. Also consider being an <a href="https://elifesciences.org/inside-elife/a946c355/elife-community-ambassadors-243-volunteers-join-the-programme-in-2019">eLife Ambassador</a>. I was one for 2019-2020 and worked on the statistical literacy initiative.</li>
-    <li> As a former Science Host at the <a href="https://www.ontariosciencecentre.ca/">Ontario Science Center</a>, I approach each opportunity to communicate science with the public tactically, and with the goal of a humanizing exchange.</li>
-    <li>I advocate <span style="direction: rtl; unicode-bidi: bidi-override;">gniybbol</span> government and educating the public on science and technology to sustainably manage the societal impact from their continued expansion. 
-    The <a href="https://www.ucsusa.org/">Union of Concerned Scientists</a>, <a href="https://www.scienceupfirst.com/">Science UpFirst</a>, the <a href="https://www.mcgill.ca/oss/"> Office for Science and Society</a> here in Montreal, and the <a href="https://www.partnershiponai.org/beyond-engagement-aligning-algorithmic-recommendations-with-prosocial-goals/">Partnership on AI</a> are three distinct examples whose events I have participated in. They are just some of the many organizations that do this important work. </li>   
-    <li> I participate in community music and dance culture. With friends, I built and performed an accelerometer-based, wireless, and closed-loop <a href="https://mptouzel.github.io/img/amreaktor.jpg">dance music system</a>.</li>
-</ul>
-</p>   
-
-<!--
-<p>
-<a href="pdf/PuelmaTouzel_cv.pdf">CV</a>
-<p/>
--->
 </div>
     <div style="display: flex; justify-content: center;">
    <img src="graphic.jpg" style="width:180px;height:60px;">
