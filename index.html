@@ -39,12 +39,16 @@
 </div>
 
 <img src="img/matta_mashup.jpg" style="max-width:100%;height:auto;" align="middle">
-<hr style="width: 100%; border: 2px solid gray; align: top">
 
-<!-- <hr style="border: 10px solid gray; border-radius: 5px;">
+<table id="billiards" width="100%" align="right">
+<tr>
+<td width="260px" >
+<!-- <hr style="border: 10px solid gray; border-radius: 5px;">s
 <hr style="border: 5px dashed gray; border-radius: 5px;"> -->
-<h0 id="home">Maximilian Puelma Touzel</h0>
-<canvas id="canvas" height="20" width="650"></canvas>  <!-- background: url('img/matta_mashup.jpg')"  -->
+<h0 id="home" padding=0>Maximilian Puelma Touzel</h0>
+</td>
+<td><!--  valign="middle"> -->
+<canvas id="canvas" height="40" width="650"></canvas>  <!-- background: url('img/matta_mashup.jpg')"  -->
 
     <script src="./utils.js"></script>
     <script src="./ball.js"></script>
@@ -63,7 +67,7 @@
         ball.x = 0;//i * 100;
         ball.y = i * 50;
         ball.vx = 5;//Math.random() * 5 - 2.5;
-        ball.vy = (Math.random() - 0.5)* 5 ;
+        ball.vy = (Math.random() - 0.5)* 10 ;
         balls.push(ball);
       }
 
@@ -177,7 +181,12 @@
       }());
     };
     </script>
-<hr style="width: 100%; border: 2px solid gray;">
+</td>
+</tr>
+</table>
+<br>
+<!-- <hr style="width: 100%; border: 2px solid gray;">
+ -->
 <table width="100%" cellspacing="0" cellpadding="0">
 <tr>
 <td width="70%" align="left">
@@ -192,7 +201,7 @@ BSc, Physics &amp; Mathematics, University of Toronto<br>
 </td>
 
 <td width="30%" align="right" valign="top">
-<img src="img/DSC_0292.JPG" style="width:77%;height:77%;" align="top" border=1><br>
+<img src="img/DSC_0292.JPG" style="width:77%;height:77%;" border=1><br>
 <span style="direction: rtl; unicode-bidi: bidi-override;">cebeuq [tod] alim [ta] mtamleup</span><br>
 <font size="+2"><a href="https://twitter.com/mptouzel"><i class="fa fa-twitter" ></i></a> &nbsp;
 <a href="https://scholar.google.de/citations?user=-EHSwJ4AAAAJ&hl=en&oi=ao"><i class="ai ai-google-scholar"></i></a> &nbsp;
@@ -204,16 +213,19 @@ BSc, Physics &amp; Mathematics, University of Toronto<br>
 </tr>
 </table>
 <br>
+<center>
+    Check out our upcoming RLDM workshop on <a href="https://sites.google.com/mila.quebec/soc-rldm/home">Social norms, influence, and alignment in human and machine decision-making</a>!
+</center>
 <p>
-My research interests lie at the intersection of artificial intelligence/machine learning and the behavioural sciences in areas related to social dilemmas and alignment problems. I seek quantiative answers to scientific questions about the inference and decision-making in individual human behaviour and to the complex system dynamics of interacting agents, <em>e.g.</em> us. Towards this end, I coordinate interdisciplinary collaborations with domain experts in which I contribute my expertise in mathematical theory for decision-making agent learning, the machine learning of thier model parameters, and a whole lot of data wrangling.
+My research interests in social dilemmas and alignment problems lie at the intersection of behavioural sciences and artificial intelligence/machine learning. I seek quantiative answers to scientific questions about the inference and decision-making in individual human behaviour and to the complex system dynamics of interacting agents, <em>e.g.</em> us. Towards this end, I coordinate interdisciplinary collaborations with domain experts in which I contribute my expertise in mathematical theory for decision-making agent learning, the machine learning of thier model parameters, and a whole lot of data wrangling.
 </p>
 <p>
 I made my way here over two decades from theoretical biophysics and computational neuroscience. It's been a virtuous circle of pursuing problems of increasing scale and scope of function while gaining proficiency in the approaches suited to quantifying their increased complexity. The payoff is now being able to tackle important questions with a versatile kit of powerful quantitative analysis tools. Two current applications I am excited about are:
 <ul>
-    <li>Using topic correlations inferred from open-ended responses to questionnaires about climate change beliefs (here a tax on carbon) in pursuit of better climate and policy communication. Below is a projection of the learned topic model onto 2 topics. [with E. Lachapelle (SciPo, UdeM)]</li>
+    <li>Using topic correlations inferred from open-ended responses to questionnaires about climate change beliefs (here about a tax on carbon) in pursuit of better climate and policy communication. Below is a projection of the learned topic model onto 2 topics (red/blue). (Note this corpus has been stemmed so 'reduc' here accounts for 'reduction', 'reducing', etc.). [with E. Lachapelle (SciPo, UdeM)]</li>
     <center><img src="img/topic18embedding.png" style="max-width:70%;height:auto;" align="middle" border="1"></center>
-
-    <li>Using reward functions inferred from dynamic-risk task behaivour as an efficient, language-free proxy for subject impulsivity scores. [with P. Cisek (Neuroscience, UdeM)]</li>
+<br>
+    <li>Using reward maps inferred with inverse reinforcement learning from dynamic-risk task behaivour as an efficient, language-free proxy for subject impulsivity scores. [with P. Cisek (Neuroscience, UdeM)]</li>
      <center><img src="img/papers/2022IRL.png" style="max-width:30%;height:auto;" align="middle"></center>
 </ul>
 See <a href="index.html#top">Research</a> for more details.
@@ -225,6 +237,12 @@ See <a href="index.html#top">Research</a> for more details.
 <div style="height: 200px; overflow-y: scroll;">
 
 <table width="100%" align="right" valign="top" style="font-style:italic">
+
+<tr>
+<td width="10%"> Mar. 2022</td>
+<td> 
+    Very excited to have our proposed RLDM workshop on Social norms, influence, and alignment in human and machine decision-making accepted! Check out the <a href="https://sites.google.com/mila.quebec/soc-rldm/home">workshop website</a>.</td>
+</tr>
 
 <tr>
 <td width="10%"> Mar. 2022</td>
@@ -246,10 +264,6 @@ See <a href="index.html#top">Research</a> for more details.
     <td> Lyapunov spectra for RNNs <a href="https://doi.org/10.3389/fams.2022.818799">paper accepted</a> to Frontiers in Applied Mathematics & Statistics</td>
 </tr>
 
-<tr>
-<td width="10%"> Feb. 2022</td>
-    <td> <a href="https://rldm.org/rldm-2022-workshops/">RLDM workshop proposal: Social norms, influence, and aligning human and machine behaviour with society</a> was accepted. </td>
-</tr>
 <tr>
 <td width="10%"> Jan. 2022</td>
     <td> 2 accepted submissions to <a href="https://www.cosyne.org/">COSYNE</a>: the neurodata validation of our decision-making model; and new work on noise robustness in recurrent neural nets with Colin Bredenberg. </td>
@@ -576,6 +590,10 @@ See <a href="index.html#top">Research</a> for more details.
 <p>
     How do we abstract the world in a way that facilitates choosing actions to achieve a goal? How does the uncertainty in our beliefs about the world transform into uncertainty about how valuable are the actions we can take in it? Why do we sometimes make the effort to reduce this uncertainty, while other times we simply account for it, or even neglect it outright, even at our peril? These questions illustrate <b> the complex interplay between efficiently representating the world and profitably acting in it</b>. They also point to a central question: <b>how do we form and select goals to pursue?</b> We are a social species, and social and identity factors can play a dominant role in this process within an individual, but also collectively within a society.
 </p>
+<center>
+<img src="img/SocioPsychNeuro-01.jpg" style="max-width:90%;height:auto;" align="middle" border=1>
+</center>
+
 <!-- 
 <p>
     Dynamics as iterates in an data-driven learning algorithm, ongoing neural activity, or agent-environment interaction is central to this interplay. I am interested in <b> how the dynamics of learning agents (be it humans, other animals, or machines) implement decision-making.</b> 
@@ -609,11 +627,11 @@ See <a href="index.html#top">Research</a> for more details.
 
 <p>
     Emerging from this training with the sense that the dynamics of inference serves as a powerful lens to understand learning systems, I returned to Canada in 2018 on an <a href="https://ivado.ca/en">IVADO</a> post-doctoral fellowship to work on dynamical systems approaches to deep learning in recurrent neural networks supervised by <a href="https://mila.quebec/en/yoshua-bengio/">Y. Bengio</a> (UdeM) and <a href="https://dms.umontreal.ca/~lajoie/">G. Lajoie</a> (UdeM). 
-    It became clear to me that forming good representations is intricately linked to what decisions they serve. I started a collaboration with <a href="http://www.cisek.org/pavel/">P. Cisek</a> (UdeM) in which I used bounded rational RL agent models to provide the first reward-rate optimal solution of the decades-old task studied in his lab and to show the particular way in which the two measured macaques behave suboptimally on the task. This normative approach ignores their social milieu: a controlling human providing juice according to an opaque rule varying over longer timescales in a non-transparent way. Stepping towards realism, I articulated a heuristic strategy more robust to an adversary and that gives a quantitative match to behaviour and a qualitative match to neural activity used to validate the fitted models. This outcome reinforced to me the importance of acknowledging the social factors at work in any given decision-making context. 
+    It became clear to me that forming good representations is intricately linked to what decisions they serve. I started a collaboration with <a href="http://www.cisek.org/pavel/">P. Cisek</a> (UdeM) in which I used bounded rational RL agent models to provide the first reward-rate optimal solution of the decades-old 'tokens task' studied in his lab and to show the particular way in which the macaques in the dataset I analyzed behave suboptimally on the task. This normative approach ignores their social milieu: an attentive, yet controlling human providing juice according to an opaque rule varying over longer timescales in a non-transparent way. Stepping towards realism, I articulated a heuristic strategy more robust to an adversary and that gives a quantitative match to behaviour and a qualitative match to neural activity used to validate the fitted models. This outcome reinforced to me the importance of acknowledging the social factors at play in any given decision-making context. 
 </p>
 
 <p>
-    With a final step-up in scale, I am now pursuing questions arising from social psychology and sociology through the lens of my quantitative training in multiscale dynamics and modelling through both in-the-lab experiments and in-the-field studies. This move was also motivated by my desire to work on problems like climate change where social factors can influence collective and individual beliefs, addressing the challenge of and opportunity to enhance communication on these social dilemmas. 
+    With a final step-up in scale, I am now pursuing questions arising from social psychology and sociology through the lens of my quantitative training in multiscale dynamics and modelling through both in-the-lab experiments and in-the-field studies. This move was also motivated by my desire to work on social dilemma problems like climate change where social factors can influence collective and individual beliefs. I hope that this work both articulates the challenge of and opportunity to enhance communication on these social dilemmas. 
 </p> 
 
 <h1 id="teaching">Teaching Experience</h1>

@@ -99,6 +99,16 @@ body {
 
 table, th, td {
     border: None;
+    padding:  10px;
+    /*border-collapse: collapse;*/
+}
+table#billiards{
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+    border-collapse: collapse;
+    padding:  0;
+    vertical-align:   middle  ;
+    table-layout:   fixed;
 }
 td, th {
     padding: 0;
