@@ -90,6 +90,9 @@ h2 {
   margin-bottom: 0.25em;
   margin-top: 0.25em;
 }
+a:link {
+      text-decoration: none;
+}
 
 body { 
   margin: 0;
@@ -146,9 +149,22 @@ table#albums
     width: 100%;
 }
 
-brr
-{
-    content: " " !important;
-    display: block !important;
-    margin:30px;
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+  border: 1px solid #000000;
+}
+
+.image2 {
+  position: absolute;
+  top: 0px;
+  left: 300px;
+  border: 1px solid #000000;
 }
