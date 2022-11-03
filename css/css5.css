@@ -13,10 +13,14 @@
    background: Purple;
     text-decoration: none
 }
+/*
+#content a {color: Purple}
+#content a: link {color: Purple}
+#content a:hover, a:visited:hover { color: Limegreen;}
 
-#content a { color: Purple; text-decoration: none}
-#content a: link {color: Purple;text-decoration: none}
-#content a:hover, a:visited:hover { color: Limegreen;text-decoration: none }
+a {color: Purple}
+a: link {color: Purple}
+a:hover, a:visited:hover { color: Limegreen;}*/
 
 .top-three {
   margin-top: 3cm;

@@ -15,6 +15,7 @@
   background: inherit;
     text-decoration: none;
 }
+
 .navbox a,
 .navbox a:visited {
   display: block;
@@ -63,9 +64,9 @@
 
 }*/
 /*.content a { color: DarkOrange; }
-.content a:link, { color: Purple; text-decoration: none; }
-.content a:visited { color: Gray; text-decoration: none; }
-.content a:hover, a:visited:hover { color: Purple;text-decoration: none; }
+.content a:link, { color: Purple; text-decoration: underline; }
+.content a:visited { color: Gray; text-decoration: underline; }
+.content a:hover, a:visited:hover { color: Purple;text-decoration: underline; }
 */
 
 h0 {
@@ -89,9 +90,6 @@ h2 {
   font-size: 100%;
   margin-bottom: 0.25em;
   margin-top: 0.25em;
-}
-a:link {
-      text-decoration: none;
 }
 
 body { 
@@ -134,7 +132,7 @@ table#albums
 height: 100px;*/
 padding: 10px;
 border: 3px solid gray;
-background-color: #DCDCDC;
+background-color: #F8F8F8;
 }
 
 #canvas{
