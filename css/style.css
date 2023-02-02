@@ -6,6 +6,8 @@
     text-decoration: none;
       margin: auto;
       text-align: center;
+      font-family: monospace;
+
 }
 
 .navbox {
@@ -74,6 +76,7 @@ h0 {
   font-size: 140%;
   margin-bottom: 0;
   margin-top: 0;
+  font-family:  monospace;
 }
 
 h1 {
