@@ -20,6 +20,11 @@
   max-width: 960px;
   margin: auto;
 }
+#box {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px #888888;
+}
 </style>
 
 <title>Maximilian Puelma Touzel</title>
@@ -57,29 +62,35 @@
 <br>
 <br>
 <br>
-    There are two important aspects to human decision-making that I find especially fascinating.
+    There are two important aspects to decision-making that I find especially fascinating:
 
-<p>
-    The first is <b>uncertainty</b>. It weaves together the major components of decision-making theory:
+<div id="box">
     <ul>
-        <li>    <em> Efficiently representating the world</em><br>How do we abstract the world in a way that minimally distorts our ability to choose actions to achieve a goal? </li>
-        <li>    <em>Profitably acting in the world</em><br>How does the uncertainty in our beliefs about the world transform into uncertainty about how valuable are the actions we can take in it? </li>
-        <li>    <em>Forming goals </em><br>How do we form and select goals to pursue (ultimately defining what profitable means)? </li> 
+    <li><b>Uncertainty</b>. It weaves together the main components of decision-making theory:
+    <ul>
+        <li>    <em> Uncertainty about how to efficiently represent the world</em><br><ul><li>How do we abstract the world in a way that minimally distorts our ability to choose actions to achieve a goal?</ul> </li>
+        <li>    <em>Uncertainty about the value of actions we take</em><br><ul><li>How does the uncertainty in our beliefs about the world transform into uncertainty about how valuable are the actions we can take in it?</ul> </li>
+        <li>    <em>Uncertainty about what goals we should pursue</em><br><ul><li>How do we form and select goals to pursue (ultimately defining what <em> value</em> means for us)?</ul> </li> 
     </ul>
 
-    Why do we sometimes make the effort to reduce this uncertainty, while other times we simply account for it, or even neglect it outright, even at our peril? While we are typically frugal with cognitive effort, we are also often simply suboptimal with respect to instrumental reward. A decision utility that extends to cognitive/informational and affective/social value is one line of investigation. Another stems from acknowledging that we misinterpret or are misguided and misinformed by our social environment. We are a social species after all. 
+    Why do we sometimes make the effort to reduce these kinds of uncertainty, while other times we simply account for it, or even neglect it outright, even at our peril? While we are typically frugal with cognitive effort, we are also often simply suboptimal with respect to instrumental reward. A decision utility that extends to cognitive/informational and affective/social value is one line of investigation. Another stems from acknowledging that we misinterpret or are misguided and misinformed by our social environment. We are a social species after all. <br>
+    <br>
     <!-- , even when acknowledging that we operate under bounded resources and 'good-enough' heuristics. Neuroscience work suggests this suboptimality is often just poor inference. -->
-</p> 
-<p>
-    The second aspect is thus how <b>social factors, personal values, and sense of identity</b> can play a prominent role in the decision-making process within an individual, but also collectively within a society. 
+    <li> <b>Social factors, personal values, and sense of identity</b>. They can play a prominent role in the decision-making process within an individual, but also collectively within a society. 
 <!-- <p>
     Dynamics as iterates in an data-driven learning algorithm, ongoing neural activity, or agent-environment interaction is central to this interplay. I am interested in how the dynamics of learning agents (be it humans, other animals, or machines) implement decision-making.
     An exciting space for these questions lies in the intersection of neural dynamics, reinforcement learning, and the cognitive and systems neuroscience of decision-making. I develop theoretical and computational approaches in collaboration with diverse experimental groups. -->
-    Many of the pressing societal problems of our time, from polarization to climate change inaction (synthesized <a href="climaction.html"><b>here</b></a>), rest on how we form beliefs while consuming information and dialoguing in social venues, increasingly curated by algorithms, on a range of scales from peer-to-peer extending to large, online communities. The form of the information exchanged in these fundamentally social interactions and the form of the mediums over which this exchange occurs can play a role in the collective decisions we make as a society by biasing how individuals decide what to believe.
-</p>
+    Many of the pressing societal problems of our time, from polarization to climate change inaction, rest on how we form beliefs while consuming information and dialoguing in social venues, increasingly curated by algorithms, on a range of scales from peer-to-peer extending to large, online communities. The form of the information exchanged in these fundamentally social interactions and the form of the mediums over which this exchange occurs can play a role in the collective decisions we make as a society by biasing how individuals decide what to believe.
+</ul>
+</div>
+<p></p>
     <center><img src="img/intersection.jpg" style="max-width:70%;height:auto;" align="middle"></center>
 <p>
-    These interests land me at the various intersections of (1) <em>cognitive psychology/behavioural science</em>, (2) <em>public policy/opinion research</em>, and (3) <em>computational social science</em>. My approach to these questions is heavily influenced by my physics of complex systems training. I develop data-driven models of human individual and collective behaviour to understand the nature of these contemporary societal challenges with the aim of increasing our chance of success. The dynamics and learning of these models use statistical machine learning tools (nicely interpretable through a statistical physics and dynamical systems lens as it turns out!).  I am excited to take part in the modern trend of pushing the theory of games & reinforcement learning towards contact with data to better understand real-world multi-agent systems. I am also excited to use my research community building experience in this space. There are already initiatives pulling people together on this:
+    These interests land me at the various intersections of 
+    <ol><li> <em>social/cognitive psychology & behavioural sciences</em>, <li><em>public policy & opinion research</em>, and <li> <em>computational social science.</em></ol>
+    My approach to these questions is heavily influenced by my physics of complex systems and machine learning training. I develop data-driven models of human individual and collective behaviour to understand the nature of these contemporary societal challenges with the aim of increasing our chance of success. The dynamics and learning of these models use statistical machine learning tools (nicely interpretable through a statistical physics and dynamical systems lens as it turns out!).  
+</p>
+<p>    I am excited to take part in the modern trend of pushing the theory of games & reinforcement learning towards contact with data to better understand real-world multi-agent systems. I am also excited to use my research community building experience in this space. There are already initiatives pulling people together on this:
     <ul>
         <li>I participated in the <a href="http://dimacs.rutgers.edu/events/details?eID=2241">DIMACS Special Focus workshop series on Bridging Game Theory and Machine Learning for Multi-party Decision Making</a> </li>
     </ul>
@@ -121,12 +132,8 @@
 </p>
 <h1>Statistical Physics</h1>
 <p>
-    Finally, I have a long-standing interest in <b> formulating information processing of a given learning system's dynamics using theoretical statistical physics</b>. This beautiful line of work that I follow arises mostly from the nice <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.99.052140">correspondence between Bayesian inference and equilibrium thermodynamics</a>. The correspondence is deep, e.g. the Nishimori line of spin glass phases maps to the case when a decoder has exact knowledge of the communication channel. There are many other beautiful connections: <a href="https://proceedings.mlr.press/v75/wibisono18a.html">sampling as optimization in the space of measures</a>, Entropy regularization/MaxEnt RL, ...
-
-    <h2 >Example Project</h2>
-<ul>
-    <li><b>Extending the formalism of information engines from stochastic thermodynamics to machine learning algorithms</b>. Here, a thermodynamics of the system's stochastic dynamics reveals information processing as buried in its entropy production.<br>
-    <a href="https://umontreal.zoom.us/rec/play/rZOe6DTE_Pjw-XY0_6vnSljxmpZD0lofswX2db4KbbF1i6zg2VqImXI6iDP6iwKfJdYR_cQxB0gR4rqR.69VNYXhWGy4aLto4?continueMode=true&_x_zm_rtaid=l7x44w80Qo2NzF66O4ZfTA.1648247768967.b5bd9133398959dd4d7ef1dc6448db17&_x_zm_rhtaid=626">Talk</a> on Stochastic Thermodynamics of learning to the Physics of Machine learning reading group at Mila.</li>
+    While I have moved from pure science to application-oriented work, I still keep abreast of the pure science of learning. In particular, I have a long-standing interest in formulating information processing of a given learning system's dynamics using theoretical statistical physics. This arises mostly from the nice <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.99.052140">correspondence between Bayesian inference and equilibrium thermodynamics</a>. The correspondence is deep, e.g. the Nishimori line of spin glass phases maps to the case when a decoder has exact knowledge of the communication channel. There are many other beautiful connections: <a href="https://proceedings.mlr.press/v75/wibisono18a.html">sampling as optimization in the space of measures</a>, Entropy regularization/MaxEnt RL. Extending the formalism of information engines from stochastic thermodynamics to machine learning algorithms is an area I think has much promise. Here, a thermodynamics of the system's stochastic dynamics reveals information processing as buried in its entropy production. I talked about this in a
+    <a href="https://umontreal.zoom.us/rec/play/rZOe6DTE_Pjw-XY0_6vnSljxmpZD0lofswX2db4KbbF1i6zg2VqImXI6iDP6iwKfJdYR_cQxB0gR4rqR.69VNYXhWGy4aLto4?continueMode=true&_x_zm_rtaid=l7x44w80Qo2NzF66O4ZfTA.1648247768967.b5bd9133398959dd4d7ef1dc6448db17&_x_zm_rhtaid=626">Talk</a> I gave on Stochastic Thermodynamics of learning to the Physics of Machine learning reading group at Mila. It seems the community is catching on (e.g. this work on <a href="https://arxiv.org/abs/2307.14653">speed limits to deep learning</a>). If this topic interests you, get in touch!</li>
 </ul>
 </p>
 
@@ -140,7 +147,7 @@ The climate change start-up scene is exploding and AI is jumping on board. The m
 <li> <a href="https://workonclimate.org/">Work on Climate</a> </li>
 <li> <a href="https://community.climatechange.ai/home">Climate Change AI</a></li>
 </ul>
-While we always need to be discerning when evaluating any given idea to ensure it isn't greenwashed by tech solutionism, I do think AI could play a big role in useful transition tech&mdash;things like optimizing measurement sensing, energy efficiency, and BioTech. Given my training and research experience, I'm interested in startups specializing on the less prevalent, but I think equally important applications of AI to climate action in the social science and social technologies space.<br>
+While we always need to be discerning when evaluating any given idea to ensure it isn't greenwashed by tech solutionism, I do think AI could play a big role in useful transition tech&mdash;applications like optimizing measurement sensing, energy efficiency, and BioTech. Given my training and research experience, I'm specifically interested in applications specializing on the less prevalent, but I think equally important applications of AI to climate action in the social science and social technologies space. If these interest you, get in touch!<br>
 <br>
 </p>
 
