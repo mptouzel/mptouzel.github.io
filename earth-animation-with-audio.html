@@ -135,19 +135,19 @@
             .earth {
                 width: min(85vw, 85vh);  /* Slightly larger on mobile screens */
             }
-            
+
             .audio-control {
                 width: 50px;
                 height: 50px;
                 bottom: 15px;
                 right: 15px;
             }
-            
+
             .audio-control svg {
                 width: 30px;
                 height: 30px;
             }
-            
+
             .stats {
                 font-size: 0.8em;
             }
@@ -181,8 +181,8 @@
 
     <script>
         // Target values
-        const TARGET_COLLISIONS_PER_ROTATION = 432000; // hiroshima bomb collisions per day
-        const ROTATION_PERIOD_SECONDS = 20; // Reduced from 200 to 20
+        const TARGET_COLLISIONS_PER_ROTATION = 300*24*60; // hiroshima bomb collisions per day
+        const ROTATION_PERIOD_SECONDS = 10; // Reduced from 200 to 20
         const TARGET_COLLISIONS_PER_SECOND = TARGET_COLLISIONS_PER_ROTATION / ROTATION_PERIOD_SECONDS;
 
         // Configuration
@@ -223,12 +223,38 @@
         let centerX = containerRect.width / 2;
         let centerY = containerRect.height / 2;
 
+        // Flag to prevent multiple initialization
+        let initialized = false;
+
         // Set earth image source after the DOM is loaded
         window.addEventListener('DOMContentLoaded', () => {
             earth.src = "earth-countries-256-slow.gif";
-            earth.onload = () => {
+
+            // Wait for both image load and first paint before initializing
+            Promise.all([
+                new Promise(resolve => {
+                    earth.onload = () => {
+                        updateDimensions();
+                        resolve();
+                    };
+                    // Fallback if onload doesn't fire
+                    setTimeout(resolve, 1000);
+                }),
+                new Promise(resolve => {
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(resolve);
+                    });
+                })
+            ]).then(() => {
+                // Make sure dimensions are updated before initialization
                 updateDimensions();
-            };
+
+                if (!initialized) {
+                    initialized = true;
+                    initializeLines();
+                    requestAnimationFrame(animate);
+                }
+            });
 
             // Set audio source - replace with your actual MP3 file URL
             backgroundAudio.src = "The Destroyer - Total Hate (Over 300 BPM).mp3";
@@ -273,10 +299,13 @@
             centerX = containerRect.width / 2;
             centerY = containerRect.height / 2;
 
-            // Update earth dimensions
-            const rect = earth.getBoundingClientRect();
-            earthRect.width = rect.width;
-            earthRect.height = rect.height;
+            // Update earth dimensions - use getBoundingClientRect for most accurate dimension
+            if (earth.complete) {
+                const rect = earth.getBoundingClientRect();
+                earthRect.width = rect.width;
+                earthRect.height = rect.height;
+                console.log("Earth size updated:", earthRect.width, earthRect.height);
+            }
         }
 
         // Object pools for performance
@@ -526,6 +555,9 @@
 
         // Create initial lines
         function initializeLines() {
+            // Ensure dimensions are updated before creating lines
+            updateDimensions();
+
             // Determine how many lines to create initially
             const initialLineCount = adjustLineCountForDevice();
 
@@ -620,42 +652,42 @@
 
         // Handle window resize
         function handleResize() {
+            // Make sure to properly update dimensions before resetting lines
             updateDimensions();
-            
-            // Reset all lines
-            activeLines.forEach(line => line.reset(true));
-            
-            // Adjust line count based on new screen size
-            const targetLineCount = adjustLineCountForDevice();
-            const currentCount = activeLines.length;
-            
-            if (currentCount > targetLineCount) {
-                // Remove excess lines
-                const countToRemove = currentCount - targetLineCount;
-                for (let i = 0; i < countToRemove && activeLines.length > 0; i++) {
-                    const line = activeLines[activeLines.length - 1];
-                    line.deactivate();
+
+            // Give a moment for layout to settle before resetting lines
+            setTimeout(() => {
+                // Reset all lines
+                activeLines.forEach(line => line.reset(true));
+
+                // Adjust line count based on new screen size
+                const targetLineCount = adjustLineCountForDevice();
+                const currentCount = activeLines.length;
+
+                if (currentCount > targetLineCount) {
+                    // Remove excess lines
+                    const countToRemove = currentCount - targetLineCount;
+                    for (let i = 0; i < countToRemove && activeLines.length > 0; i++) {
+                        const line = activeLines[activeLines.length - 1];
+                        line.deactivate();
+                    }
+                } else if (currentCount < targetLineCount) {
+                    // Add more lines
+                    const countToAdd = targetLineCount - currentCount;
+                    for (let i = 0; i < countToAdd; i++) {
+                        getLineFromPool().activate();
+                    }
                 }
-            } else if (currentCount < targetLineCount) {
-                // Add more lines
-                const countToAdd = targetLineCount - currentCount;
-                for (let i = 0; i < countToAdd; i++) {
-                    getLineFromPool().activate();
-                }
-            }
+            }, 100);
         }
 
         window.addEventListener('resize', handleResize);
-        
+
         // Also handle device orientation changes on mobile
         window.addEventListener('orientationchange', () => {
             // Wait a moment for the browser to adjust to the new orientation
-            setTimeout(handleResize, 200);
+            setTimeout(handleResize, 300);
         });
-
-        // Start animation
-        initializeLines();
-        requestAnimationFrame(animate);
     </script>
 </body>
 </html>
