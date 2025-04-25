@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earth Animation with Moving Lines and Audio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .earth {
+            width: 66.67%;
+            height: auto;
+            z-index: 1;
+            position: relative;
+        }
+
+        .animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .line {
+            position: absolute;
+            background-color: red;
+            transform-origin: center;
+            will-change: transform, opacity, width, height, left, top;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: red;
+            opacity: 0;
+            transition: opacity 0.1s;
+            will-change: opacity, left, top;
+        }
+
+        .stats {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: monospace;
+            z-index: 3;
+        }
+
+        .audio-control {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+
+        .audio-control:hover {
+            background-color: rgba(50, 50, 50, 0.7);
+        }
+
+        .audio-control svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .audio-control.muted .sound-on {
+            display: none;
+        }
+
+        .audio-control:not(.muted) .sound-off {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/api/placeholder/400/400" alt="Rotating Earth" class="earth" id="earth">
+        <div class="animation-container" id="animationContainer"></div>
+        <div class="stats" id="stats">Collisions: 0 | Rate: 0/s | FPS: 0</div>
+
+        <div class="audio-control" id="audioControl">
+            <!-- Sound On Icon -->
+            <svg class="sound-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <!-- Sound Off Icon -->
+            <svg class="sound-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Audio element -->
+    <audio id="backgroundAudio" loop preload="auto">
+        <source src="" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Target values
+        const TARGET_COLLISIONS_PER_ROTATION = 432000; // hiroshima bomb collisions per day
+        const ROTATION_PERIOD_SECONDS = 20; // Reduced from 200 to 20
+        const TARGET_COLLISIONS_PER_SECOND = TARGET_COLLISIONS_PER_ROTATION / ROTATION_PERIOD_SECONDS;
+
+        // Configuration
+        const EARTH_RADIUS_FACTOR = 0.97; // Reduce Earth's collision radius by 3%
+        const MIN_LINE_LENGTH = 3;
+        const MAX_LINE_LENGTH = 8;
+        const MIN_LINE_WIDTH = 0.5;
+        const MAX_LINE_WIDTH = 1.5;
+        const CONSTANT_SPEED = 30; // Speed of lines
+
+        // Performance optimizations
+        const USE_OBJECT_POOL = true;
+        const MAX_ACTIVE_LINES = 2000; // Limit active lines
+        const ACTIVE_CIRCLES_LIMIT = 200; // Limit active circles
+        const LINE_THROTTLE_FACTOR = 0.2; // Only process a fraction of lines each frame
+
+        // Container elements
+        const container = document.getElementById('animationContainer');
+        const earth = document.getElementById('earth');
+        const stats = document.getElementById('stats');
+        const audioControl = document.getElementById('audioControl');
+        const backgroundAudio = document.getElementById('backgroundAudio');
+
+        // Stats tracking
+        let collisionCount = 0;
+        let collisionsThisSecond = 0;
+        let lastSecondTimestamp = performance.now();
+        let frameCount = 0;
+        let fps = 0;
+        let lastFpsUpdate = 0;
+
+        // Audio state
+        let audioMuted = false;
+
+        // Canvas for measuring
+        const earthRect = { width: 400, height: 400 }; // Default until loaded
+        const containerRect = { width: window.innerWidth, height: window.innerHeight };
+        let centerX = containerRect.width / 2;
+        let centerY = containerRect.height / 2;
+
+        // Set earth image source after the DOM is loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            earth.src = "earth-countries-256-slow.gif";
+            earth.onload = () => {
+                const rect = earth.getBoundingClientRect();
+                earthRect.width = rect.width;
+                earthRect.height = rect.height;
+            };
+
+            // Set audio source - replace with your actual MP3 file URL
+            backgroundAudio.src = "The Destroyer - Total Hate (Over 300 BPM).mp3";
+
+            // Try to play audio (might be blocked by browser policy)
+            initAudio();
+        });
+
+        // Initialize audio - handles autoplay restrictions
+        function initAudio() {
+            // First interaction with the page allows audio to play
+            document.addEventListener('click', function audioInitializer() {
+                backgroundAudio.play().catch(e => {
+                    console.log("Audio play prevented: ", e);
+                });
+                document.removeEventListener('click', audioInitializer);
+            }, { once: true });
+
+            // Set up audio control
+            audioControl.addEventListener('click', toggleAudio);
+        }
+
+        // Toggle audio on/off
+        function toggleAudio() {
+            if (audioMuted) {
+                backgroundAudio.play();
+                audioControl.classList.remove('muted');
+            } else {
+                backgroundAudio.pause();
+                audioControl.classList.add('muted');
+            }
+            audioMuted = !audioMuted;
+        }
+
+        // Object pools for performance
+        const linePool = [];
+        const activeLines = [];
+        const circlePool = [];
+        const activeCircles = [];
+
+        // Precompute Math.random values for better performance
+        const randomValues = new Float32Array(1000);
+        for (let i = 0; i < 1000; i++) {
+            randomValues[i] = Math.random();
+        }
+        let randomIndex = 0;
+        function fastRandom() {
+            randomIndex = (randomIndex + 1) % randomValues.length;
+            return randomValues[randomIndex];
+        }
+
+        class Line {
+            constructor() {
+                this.element = document.createElement('div');
+                this.element.className = 'line';
+                container.appendChild(this.element);
+
+                this.isActive = false;
+                this.hasCollidedThisFrame = false;
+
+                // Line properties
+                this.initialX = 0;
+                this.initialY = 0;
+                this.z = 0;
+                this.length = 0;
+                this.width = 0;
+                this.angle = 0;
+                this.hitEarth = false;
+                this.collisionZ = null;
+
+                // Hide initially
+                this.element.style.opacity = '0';
+            }
+
+            activate() {
+                this.reset(true);
+                this.isActive = true;
+                activeLines.push(this);
+            }
+
+            deactivate() {
+                this.isActive = false;
+                this.element.style.opacity = '0';
+                // Remove from active lines
+                const index = activeLines.indexOf(this);
+                if (index !== -1) {
+                    activeLines.splice(index, 1);
+                }
+                // Return to pool
+                linePool.push(this);
+            }
+
+            reset(initial = false) {
+                // Reset properties
+                this.initialX = fastRandom() * containerRect.width;
+                this.initialY = fastRandom() * containerRect.height;
+                this.z = initial ? fastRandom() * 500 : 100;
+                this.length = MIN_LINE_LENGTH + fastRandom() * (MAX_LINE_LENGTH - MIN_LINE_LENGTH);
+                this.width = MIN_LINE_WIDTH + fastRandom() * (MAX_LINE_WIDTH - MIN_LINE_WIDTH);
+
+                // Calculate angle for line orientation - pointing toward center
+                const dx = this.initialX - centerX;
+                const dy = this.initialY - centerY;
+                this.angle = Math.atan2(dy, dx);
+
+                // Earth properties
+                this.hitEarth = false;
+                this.collisionZ = null;
+                this.hasCollidedThisFrame = false;
+
+                // Make line visible again
+                this.element.style.opacity = '1';
+
+                // Update visual elements initially
+                this.update();
+            }
+
+            update() {
+                if (!this.isActive) return;
+
+                // Bail early if we've already processed a collision this frame
+                if (this.hasCollidedThisFrame) return;
+
+                // If already hit earth but still showing collision effects, don't move further
+                if (this.hitEarth && this.collisionZ !== null) {
+                    // Keep the line at the collision point
+                    this.z = this.collisionZ;
+                } else {
+                    // Move line away from viewer with constant speed (increasing z)
+                    this.z += CONSTANT_SPEED;
+                }
+
+                // Apply the reduction factor to the Earth's collision radius
+                const earthRadius = earthRect.width / 2 * EARTH_RADIUS_FACTOR;
+
+                // Calculate perspective scale factor (avoid division when possible)
+                const scale = 1000 / this.z;
+
+                // Calculate position with perspective but fixed x-y coords
+                const scaledX = centerX + (this.initialX - centerX) * scale;
+                const scaledY = centerY + (this.initialY - centerY) * scale;
+
+                // Calculate true 3D distance to Earth's center
+                const dx = this.initialX - centerX;
+                const dy = this.initialY - centerY;
+                const dz = this.z - 1000; // Earth center Z
+
+                // Optimize distance calculation using squared distance first
+                const dxScaled = dx * scale;
+                const dyScaled = dy * scale;
+                const distanceSquared = dxScaled * dxScaled + dyScaled * dyScaled + dz * dz;
+                const earthRadiusSquared = earthRadius * earthRadius;
+
+                // Only calculate square root if necessary
+                let hitDetected = false;
+
+                if (distanceSquared <= earthRadiusSquared) {
+                    // Already hit earth
+                    hitDetected = true;
+                } else if (this.z > 900 && !this.hitEarth) {
+                    // Check if will hit in next frame (only if we're close enough)
+                    const nextZ = this.z + CONSTANT_SPEED;
+                    const nextDz = nextZ - 1000;
+                    const nextScale = 1000 / nextZ;
+                    const nextDxScaled = dx * nextScale;
+                    const nextDyScaled = dy * nextScale;
+                    const nextDistanceSquared = nextDxScaled * nextDxScaled + nextDyScaled * nextDyScaled + nextDz * nextDz;
+
+                    if (nextDistanceSquared <= earthRadiusSquared) {
+                        hitDetected = true;
+                    }
+                }
+
+                // Handle collision
+                if (!this.hitEarth && this.z > 900 && hitDetected) {
+                    this.hasCollidedThisFrame = true;
+                    this.hitEarth = true;
+                    this.collisionZ = this.z;
+
+                    // Create a circle at impact point if we're not over the limit
+                    if (activeCircles.length < ACTIVE_CIRCLES_LIMIT) {
+                        createCircle(scaledX, scaledY, this.width * 4);
+                    }
+
+                    // Count the collision
+                    collisionCount++;
+                    collisionsThisSecond++;
+
+                    // Schedule to hide line
+                    this.element.style.opacity = '0';
+
+                    // Schedule to deactivate this line and get a new one after a delay
+                    setTimeout(() => {
+                        this.deactivate();
+                        getLineFromPool().activate();
+                    }, 200);
+
+                    return;
+                }
+
+                // Reset line if it goes too far into the page
+                if (this.z > 3000) {
+                    this.deactivate();
+                    getLineFromPool().activate();
+                    return;
+                }
+
+                // Calculate size based on perspective
+                const perspectiveLength = this.length * scale;
+                const perspectiveWidth = this.width * scale;
+
+                // Update line visuals - batch updates for better performance
+                const styleUpdates = {
+                    width: `${Math.max(0.5, perspectiveWidth)}px`,
+                    height: `${Math.max(1, perspectiveLength)}px`,
+                    left: `${scaledX - perspectiveWidth / 2}px`,
+                    top: `${scaledY - perspectiveLength / 2}px`,
+                    transform: `rotate(${this.angle + Math.PI/2}rad)`,
+                    opacity: this.hitEarth ? 0 : Math.min(1, Math.max(0.2, 1 - (this.z / 2000)))
+                };
+
+                Object.assign(this.element.style, styleUpdates);
+            }
+        }
+
+        function createCircle(x, y, size) {
+            let circle;
+
+            // Get from pool or create new
+            if (circlePool.length > 0) {
+                circle = circlePool.pop();
+            } else {
+                circle = document.createElement('div');
+                circle.className = 'circle';
+                container.appendChild(circle);
+            }
+
+            // Set properties
+            circle.style.width = `${size}px`;
+            circle.style.height = `${size}px`;
+            circle.style.left = `${x - size / 2}px`;
+            circle.style.top = `${y - size / 2}px`;
+            circle.style.opacity = '1';
+
+            // Add to active circles
+            activeCircles.push(circle);
+
+            // Schedule to return to pool
+            setTimeout(() => {
+                circle.style.opacity = '0';
+
+                setTimeout(() => {
+                    const index = activeCircles.indexOf(circle);
+                    if (index !== -1) {
+                        activeCircles.splice(index, 1);
+                    }
+                    circlePool.push(circle);
+                }, 100);
+            }, 150);
+        }
+
+        function getLineFromPool() {
+            if (linePool.length > 0) {
+                return linePool.pop();
+            } else {
+                return new Line();
+            }
+        }
+
+        // Create initial lines
+        function initializeLines() {
+            // Determine how many lines to create initially
+            const initialLineCount = Math.min(MAX_ACTIVE_LINES, 1000);
+
+            console.log(`Creating ${initialLineCount} initial lines`);
+
+            // Create lines in batches
+            const batchSize = 100;
+            const totalBatches = Math.ceil(initialLineCount / batchSize);
+
+            function createBatch(batchIndex) {
+                const start = batchIndex * batchSize;
+                const end = Math.min((batchIndex + 1) * batchSize, initialLineCount);
+
+                for (let i = start; i < end; i++) {
+                    const line = new Line();
+                    line.activate();
+                }
+
+                if (batchIndex + 1 < totalBatches) {
+                    setTimeout(() => createBatch(batchIndex + 1), 20);
+                }
+            }
+
+            createBatch(0);
+        }
+
+        // Animation loop with throttling and optimization
+        let lastFrameTime = 0;
+        let lineBatchIndex = 0;
+        const lineBatchSize = 100; // Process lines in batches
+
+        function animate(timestamp) {
+            // Calculate FPS
+            frameCount++;
+            if (timestamp - lastFpsUpdate >= 1000) {
+                fps = Math.round((frameCount * 1000) / (timestamp - lastFpsUpdate));
+                frameCount = 0;
+                lastFpsUpdate = timestamp;
+            }
+
+            // Process only a subset of lines each frame for better performance
+            const linesToProcessThisFrame = Math.max(50, Math.floor(activeLines.length * LINE_THROTTLE_FACTOR));
+
+            // Reset collision flag on all lines being processed this frame
+            for (let i = 0; i < linesToProcessThisFrame; i++) {
+                const index = (lineBatchIndex + i) % activeLines.length;
+                if (index < activeLines.length) {
+                    activeLines[index].hasCollidedThisFrame = false;
+                }
+            }
+
+            // Update lines in the current batch
+            for (let i = 0; i < linesToProcessThisFrame; i++) {
+                const index = (lineBatchIndex + i) % activeLines.length;
+                if (index < activeLines.length) {
+                    activeLines[index].update();
+                }
+            }
+
+            // Move to next batch
+            lineBatchIndex = (lineBatchIndex + linesToProcessThisFrame) % activeLines.length;
+
+            // Update stats once per second
+            if (timestamp - lastSecondTimestamp >= 1000) {
+                const rate = collisionsThisSecond;
+                stats.textContent = `Collisions: ${collisionCount} | Rate: ${rate}/s | FPS: ${fps} | Active: ${activeLines.length}`;
+                collisionsThisSecond = 0;
+                lastSecondTimestamp = timestamp;
+
+                // Auto-adjust active line count based on target collision rate and FPS
+                if (fps < 30 && activeLines.length > 500) {
+                    // Too many lines, reduce count
+                    const countToRemove = Math.min(100, Math.max(10, Math.floor(activeLines.length * 0.1)));
+                    for (let i = 0; i < countToRemove; i++) {
+                        if (activeLines.length > 0) {
+                            const line = activeLines[activeLines.length - 1];
+                            line.deactivate();
+                        }
+                    }
+                } else if (fps > 50 && rate < TARGET_COLLISIONS_PER_SECOND && activeLines.length < MAX_ACTIVE_LINES) {
+                    // Need more lines, add some
+                    const countToAdd = Math.min(50, MAX_ACTIVE_LINES - activeLines.length);
+                    for (let i = 0; i < countToAdd; i++) {
+                        getLineFromPool().activate();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        // Handle window resize
+        function handleResize() {
+            containerRect.width = window.innerWidth;
+            containerRect.height = window.innerHeight;
+            centerX = containerRect.width / 2;
+            centerY = containerRect.height / 2;
+
+            // Update earth dimensions
+            const rect = earth.getBoundingClientRect();
+            earthRect.width = rect.width;
+            earthRect.height = rect.height;
+
+            // Reset all lines
+            activeLines.forEach(line => line.reset(true));
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        // Start animation
+        initializeLines();
+        requestAnimationFrame(animate);
+    </script>
+</body>
+</html>
