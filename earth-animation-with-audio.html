@@ -20,16 +20,30 @@
         .container {
             position: relative;
             width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
+        /* MODIFIED: More responsive earth size for different screen sizes */
         .earth {
-            width: 66.67%;
+            width: min(80vw, 80vh);  /* Use viewport-relative units */
             height: auto;
             z-index: 1;
             position: relative;
+        }
+
+        /* MODIFIED: Earth container for centering */
+        .earth-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
         }
 
         .animation-container {
@@ -66,30 +80,46 @@
             z-index: 3;
         }
 
+        /* Enhanced audio control styling */
         .audio-control {
             position: absolute;
             bottom: 20px;
             right: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(0, 0, 0, 0.5);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(50, 50, 200, 0.8);
+            border: 3px solid white;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             z-index: 10;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
         }
 
         .audio-control:hover {
-            background-color: rgba(50, 50, 50, 0.7);
+            background-color: rgba(80, 80, 250, 0.9);
+            transform: scale(1.1);
         }
 
         .audio-control svg {
-            width: 24px;
-            height: 24px;
+            width: 36px;
+            height: 36px;
             fill: white;
+        }
+
+        .audio-control::after {
+            content: "AUDIO";
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 12px;
         }
 
         .audio-control.muted .sound-on {
@@ -99,11 +129,36 @@
         .audio-control:not(.muted) .sound-off {
             display: none;
         }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .earth {
+                width: min(85vw, 85vh);  /* Slightly larger on mobile screens */
+            }
+            
+            .audio-control {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .audio-control svg {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .stats {
+                font-size: 0.8em;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="/api/placeholder/400/400" alt="Rotating Earth" class="earth" id="earth">
+        <div class="earth-container">
+            <img src="/api/placeholder/400/400" alt="Rotating Earth" class="earth" id="earth">
+        </div>
         <div class="animation-container" id="animationContainer"></div>
         <div class="stats" id="stats">Collisions: 0 | Rate: 0/s | FPS: 0</div>
 
@@ -160,7 +215,7 @@
         let lastFpsUpdate = 0;
 
         // Audio state
-        let audioMuted = false;
+        let audioMuted = true; // Start muted by default
 
         // Canvas for measuring
         const earthRect = { width: 400, height: 400 }; // Default until loaded
@@ -172,13 +227,14 @@
         window.addEventListener('DOMContentLoaded', () => {
             earth.src = "earth-countries-256-slow.gif";
             earth.onload = () => {
-                const rect = earth.getBoundingClientRect();
-                earthRect.width = rect.width;
-                earthRect.height = rect.height;
+                updateDimensions();
             };
 
             // Set audio source - replace with your actual MP3 file URL
             backgroundAudio.src = "The Destroyer - Total Hate (Over 300 BPM).mp3";
+
+            // Set initial audio state
+            audioControl.classList.add('muted');
 
             // Try to play audio (might be blocked by browser policy)
             initAudio();
@@ -188,9 +244,7 @@
         function initAudio() {
             // First interaction with the page allows audio to play
             document.addEventListener('click', function audioInitializer() {
-                backgroundAudio.play().catch(e => {
-                    console.log("Audio play prevented: ", e);
-                });
+                // Don't auto-play on first click, just enable for later
                 document.removeEventListener('click', audioInitializer);
             }, { once: true });
 
@@ -201,13 +255,28 @@
         // Toggle audio on/off
         function toggleAudio() {
             if (audioMuted) {
-                backgroundAudio.play();
+                backgroundAudio.play().catch(e => {
+                    console.log("Audio play prevented: ", e);
+                });
                 audioControl.classList.remove('muted');
             } else {
                 backgroundAudio.pause();
                 audioControl.classList.add('muted');
             }
             audioMuted = !audioMuted;
+        }
+
+        // Update screen dimensions and center point
+        function updateDimensions() {
+            containerRect.width = window.innerWidth;
+            containerRect.height = window.innerHeight;
+            centerX = containerRect.width / 2;
+            centerY = containerRect.height / 2;
+
+            // Update earth dimensions
+            const rect = earth.getBoundingClientRect();
+            earthRect.width = rect.width;
+            earthRect.height = rect.height;
         }
 
         // Object pools for performance
@@ -445,10 +514,20 @@
             }
         }
 
+        // Adjust the number of active lines based on device capability
+        function adjustLineCountForDevice() {
+            // Reduce max lines for mobile devices
+            if (window.innerWidth <= 768) {
+                return Math.min(MAX_ACTIVE_LINES, 500); // Fewer lines for mobile
+            } else {
+                return Math.min(MAX_ACTIVE_LINES, 1000); // More lines for desktop
+            }
+        }
+
         // Create initial lines
         function initializeLines() {
             // Determine how many lines to create initially
-            const initialLineCount = Math.min(MAX_ACTIVE_LINES, 1000);
+            const initialLineCount = adjustLineCountForDevice();
 
             console.log(`Creating ${initialLineCount} initial lines`);
 
@@ -528,7 +607,8 @@
                     }
                 } else if (fps > 50 && rate < TARGET_COLLISIONS_PER_SECOND && activeLines.length < MAX_ACTIVE_LINES) {
                     // Need more lines, add some
-                    const countToAdd = Math.min(50, MAX_ACTIVE_LINES - activeLines.length);
+                    const maxToAdd = window.innerWidth <= 768 ? 10 : 50; // Fewer new lines on mobile
+                    const countToAdd = Math.min(maxToAdd, MAX_ACTIVE_LINES - activeLines.length);
                     for (let i = 0; i < countToAdd; i++) {
                         getLineFromPool().activate();
                     }
@@ -540,21 +620,38 @@
 
         // Handle window resize
         function handleResize() {
-            containerRect.width = window.innerWidth;
-            containerRect.height = window.innerHeight;
-            centerX = containerRect.width / 2;
-            centerY = containerRect.height / 2;
-
-            // Update earth dimensions
-            const rect = earth.getBoundingClientRect();
-            earthRect.width = rect.width;
-            earthRect.height = rect.height;
-
+            updateDimensions();
+            
             // Reset all lines
             activeLines.forEach(line => line.reset(true));
+            
+            // Adjust line count based on new screen size
+            const targetLineCount = adjustLineCountForDevice();
+            const currentCount = activeLines.length;
+            
+            if (currentCount > targetLineCount) {
+                // Remove excess lines
+                const countToRemove = currentCount - targetLineCount;
+                for (let i = 0; i < countToRemove && activeLines.length > 0; i++) {
+                    const line = activeLines[activeLines.length - 1];
+                    line.deactivate();
+                }
+            } else if (currentCount < targetLineCount) {
+                // Add more lines
+                const countToAdd = targetLineCount - currentCount;
+                for (let i = 0; i < countToAdd; i++) {
+                    getLineFromPool().activate();
+                }
+            }
         }
 
         window.addEventListener('resize', handleResize);
+        
+        // Also handle device orientation changes on mobile
+        window.addEventListener('orientationchange', () => {
+            // Wait a moment for the browser to adjust to the new orientation
+            setTimeout(handleResize, 200);
+        });
 
         // Start animation
         initializeLines();
