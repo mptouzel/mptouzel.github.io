@@ -130,6 +130,24 @@
             display: none;
         }
 
+        /* Added: Explanatory text styling */
+        .explanatory-text {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding: 0 20px;
+            z-index: 5;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
         /* Mobile-specific adjustments */
         @media (max-width: 768px) {
             .earth {
@@ -151,11 +169,22 @@
             .stats {
                 font-size: 0.8em;
             }
+
+            .explanatory-text {
+                font-size: 14px;
+                top: 40px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Added: Explanatory text -->
+        <div class="explanatory-text">
+            Every second, our planet absorbs an equivalent of 300 Hiroshima bomb's worth of heat from the sun. <br>
+            Absorption is due to greenhouse gases in the atmosphere, the vast majority are there from us burning fossil fuels.
+        </div>
+
         <div class="earth-container">
             <img src="/api/placeholder/400/400" alt="Rotating Earth" class="earth" id="earth">
         </div>
@@ -182,7 +211,7 @@
     <script>
         // Target values
         const TARGET_COLLISIONS_PER_ROTATION = 300*24*60; // hiroshima bomb collisions per day
-        const ROTATION_PERIOD_SECONDS = 10; // Reduced from 200 to 20
+        const ROTATION_PERIOD_SECONDS = 20; // Reduced from 200 to 20
         const TARGET_COLLISIONS_PER_SECOND = TARGET_COLLISIONS_PER_ROTATION / ROTATION_PERIOD_SECONDS;
 
         // Configuration
@@ -213,6 +242,7 @@
         let frameCount = 0;
         let fps = 0;
         let lastFpsUpdate = 0;
+        let occlusionCount = 0; // Track occluded lines
 
         // Audio state
         let audioMuted = true; // Start muted by default
@@ -333,6 +363,7 @@
 
                 this.isActive = false;
                 this.hasCollidedThisFrame = false;
+                this.isOccluded = false; // New property to track if line is behind Earth
 
                 // Line properties
                 this.initialX = 0;
@@ -383,6 +414,7 @@
                 this.hitEarth = false;
                 this.collisionZ = null;
                 this.hasCollidedThisFrame = false;
+                this.isOccluded = false; // Reset occlusion state
 
                 // Make line visible again
                 this.element.style.opacity = '1';
@@ -429,7 +461,28 @@
 
                 // Only calculate square root if necessary
                 let hitDetected = false;
+                let behindEarth = false;
 
+                // Calculate if this line is behind Earth (occluded) even if it won't hit
+                // For this, we need to check if the line is at a Z beyond Earth's center (Z=1000)
+                // and if its projected position is within Earth's radius
+
+                // Check if the line is behind Earth's center along Z axis
+                if (this.z > 1000) {
+                    // Check if the line would be inside Earth's radius when projected
+                    const screenDistanceSquared = dxScaled * dxScaled + dyScaled * dyScaled;
+                    if (screenDistanceSquared <= earthRadiusSquared) {
+                        behindEarth = true;
+
+                        // Only count the occlusion once
+                        if (!this.isOccluded) {
+                            this.isOccluded = true;
+                            occlusionCount++;
+                        }
+                    }
+                }
+
+                // Standard collision detection
                 if (distanceSquared <= earthRadiusSquared) {
                     // Already hit earth
                     hitDetected = true;
@@ -474,6 +527,12 @@
                     return;
                 }
 
+                // Handle occlusion (passing behind Earth without hitting it)
+                if (behindEarth && !this.hitEarth) {
+                    // Hide the line when it passes behind the Earth
+                    this.element.style.opacity = '0';
+                }
+
                 // Reset line if it goes too far into the page
                 if (this.z > 3000) {
                     this.deactivate();
@@ -492,7 +551,8 @@
                     left: `${scaledX - perspectiveWidth / 2}px`,
                     top: `${scaledY - perspectiveLength / 2}px`,
                     transform: `rotate(${this.angle + Math.PI/2}rad)`,
-                    opacity: this.hitEarth ? 0 : Math.min(1, Math.max(0.2, 1 - (this.z / 2000)))
+                    // Hide line if it's behind Earth, otherwise show based on distance
+                    opacity: behindEarth || this.hitEarth ? 0 : Math.min(1, Math.max(0.2, 1 - (this.z / 2000)))
                 };
 
                 Object.assign(this.element.style, styleUpdates);
@@ -623,7 +683,7 @@
             // Update stats once per second
             if (timestamp - lastSecondTimestamp >= 1000) {
                 const rate = collisionsThisSecond;
-                stats.textContent = `Collisions: ${collisionCount} | Rate: ${rate}/s | FPS: ${fps} | Active: ${activeLines.length}`;
+                stats.textContent = `Collisions: ${collisionCount} | Occluded: ${occlusionCount} | Rate: ${rate}/s | FPS: ${fps} | Active: ${activeLines.length}`;
                 collisionsThisSecond = 0;
                 lastSecondTimestamp = timestamp;
 
