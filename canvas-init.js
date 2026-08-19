@@ -1,15 +1,21 @@
 /**
  * Site-wide init for the ball.js elastic-collision canvas that sits behind
- * every page's title. Re-skinned as ambient texture: --signal at low
- * opacity, thin/small balls, no other motion on the page. Respects
+ * every page's title. Balls all start piled at the left edge and drift
+ * right together, spreading into a density wave via collisions. Left/top/
+ * bottom walls bounce normally; the right wall also bounces the ball back
+ * (position clamped, velocity reversed) on the frame it's reached -- so
+ * it's visibly seen rebounding, giving the compression-wave-reflects look
+ * -- but is then marked and removed at the start of the next frame, so
+ * density falls across the canvas as balls exit over time. Re-skinned per
+ * the design system: --signal at low opacity, no stroke. Respects
  * prefers-reduced-motion by drawing a single static frame instead of
- * looping requestAnimationFrame.
+ * animating.
  */
 (function () {
   function initCanvas(canvas) {
     var context = canvas.getContext('2d'),
         balls = [],
-        numBalls = 120,
+        numBalls = 400,
         bounce = -1.0,
         reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -17,14 +23,14 @@
     var fillColor = utils.colorToRGB(signalVar, 0.35);
 
     for (var radius, ball, i = 0; i < numBalls; i++) {
-      radius = 3;
+      radius = 5;
       ball = new Ball(radius, fillColor);
       ball.mass = radius;
       ball.lineWidth = 0;
-      ball.x = Math.random() * canvas.width;
-      ball.y = Math.random() * canvas.height;
-      ball.vx = (Math.random() - 0.5) * 2;
-      ball.vy = (Math.random() - 0.5) * 2;
+      ball.x = 0;
+      ball.y = i * numBalls;
+      ball.vx = 5;
+      ball.vy = (Math.random() - 0.5) * 10;
       balls.push(ball);
     }
 
@@ -70,8 +76,10 @@
 
     function checkWalls (ball) {
       if (ball.x + ball.radius > canvas.width) {
+        ball.isinframe = false;
         ball.x = canvas.width - ball.radius;
         ball.vx *= bounce;
+        ball.vy *= bounce;
       } else if (ball.x - ball.radius < 0) {
         ball.x = ball.radius;
         ball.vx *= bounce;
@@ -95,19 +103,12 @@
       ball.draw(context);
     }
 
-    function renderFrame () {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      balls.forEach(draw);
-    }
+    function step () {
+      // Balls marked isinframe=false last frame were still drawn once (in
+      // their bounced-back position) -- remove them now, before this
+      // frame's physics, not before that draw happened.
+      balls = balls.filter(function (b) { return b.isinframe; });
 
-    if (reduceMotion) {
-      renderFrame();
-      return;
-    }
-
-    (function drawFrame () {
-      window.requestAnimationFrame(drawFrame);
-      context.clearRect(0, 0, canvas.width, canvas.height);
       balls.forEach(move);
       for (var ballA, i = 0, len = balls.length - 1; i < len; i++) {
         ballA = balls[i];
@@ -116,7 +117,28 @@
           checkCollision(ballA, ballB);
         }
       }
+    }
+
+    function render () {
+      context.clearRect(0, 0, canvas.width, canvas.height);
       balls.forEach(draw);
+    }
+
+    if (reduceMotion) {
+      // Advance the simulation a bit so the static frame shows the wave
+      // mid-flight rather than the initial left-edge pile, then draw
+      // exactly once and stop.
+      for (var f = 0; f < 60; f++) {
+        step();
+      }
+      render();
+      return;
+    }
+
+    (function drawFrame () {
+      window.requestAnimationFrame(drawFrame);
+      step();
+      render();
     }());
   }
 
