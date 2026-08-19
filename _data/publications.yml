@@ -150,7 +150,7 @@
     - label: journal
       url: https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010080
     - label: "supp. video"
-      url: pdf/PGD_example_simulation.mp4
+      url: media/PGD_example_simulation.mp4
 
 - title: "On Lyapunov Exponents for RNNs: Understanding information propogation using dynamical systems tools"
   author: "Puelma Touzel M*, Vogt R*, Shlizerman E, Lajoie G."
@@ -190,7 +190,7 @@
     - label: preprint
       url: "pdf/PuelmaTouzel_Partitioning_ms.pdf"
     - label: "supp. video"
-      url: "pdf/PuelmaTouzel_Partioning_suppvideo.avi"
+      url: "media/PuelmaTouzel_Partioning_suppvideo.avi"
 
 - title: "Precise tracking of vaccine-responding T-cell clones reveals convergent and personalized response in identical twins"
   author: "Pogorelyy M, Minervina A, Puelma Touzel M, Sycheva A, Komech E, Kovalenko E, Karganova G, Egorov E, Komkov A, Chudakov D, Mamedov I, Mora T, Walczak A, Lebedev Y."
