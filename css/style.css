@@ -147,11 +147,13 @@ blockquote {
   padding: var(--space-3) 0;
 }
 #billiards h1 {
-  flex: 0 0 260px;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 #billiards canvas {
   flex: 1 1 auto;
   max-width: 100%;
+  min-width: 0;
 }
 @media (max-width: 600px) {
   #billiards {
@@ -161,6 +163,7 @@ blockquote {
   }
   #billiards h1 {
     flex: none;
+    white-space: normal;
   }
 }
 
