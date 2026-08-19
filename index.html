@@ -3,14 +3,8 @@ layout: default
 ---
 <img src="img/matta_mashup.jpg" style="max-width:100%;height:auto;" align="middle">
 
-<table id="billiards" width="100%" align="right">
-<tr>
-<td width="260px" >
-<!-- <hr style="border: 10px solid gray; border-radius: 5px;">s
-<hr style="border: 5px dashed gray; border-radius: 5px;"> -->
-<h0 id="home" padding=0>Maximilian Puelma Touzel</h0>
-</td>
-<td><!--  valign="middle"> -->
+<div id="billiards">
+<h1 id="home">Maximilian Puelma Touzel</h1>
 <canvas id="canvas" height="40" width="680"></canvas>
     <script src="./utils.js"></script>
     <script src="./ball.js"></script>
@@ -145,9 +139,7 @@ layout: default
       }());
     };
     </script>
-</td>
-</tr>
-</table>
+</div>
 
 <!-- <hr style="width: 100%; border: 2px solid gray;">
  -->
@@ -185,24 +177,22 @@ BSc, Physics &amp; Mathematics, University of Toronto<br>
 <!-- <center>
     Check out our upcoming RLDM workshop on <a href="https://sites.google.com/mila.quebec/soc-rldm/home">Social norms, influence, and alignment in human and machine decision-making</a>
 </center> -->
-<b>News:</b>
-<br>
-<div style="height: 150px; overflow-y: scroll;">
-
-<table width="100%" align="right" valign="top" style="font-style:italic">
-
+<h2>News</h2>
+<div class="news-scroll">
+<div class="news-list">
 {% for item in site.data.news %}
-<tr>
-<td width="10%"> {{ item.date | date: "%b %Y" }}</td>
-<td> {{ item.text }}</td>
-</tr>
+<div class="news-row">
+<time class="news-date" datetime="{{ item.date }}">{{ item.date | date: "%b %Y" }}</time>
+<div>{{ item.text }}</div>
+</div>
 {% endfor %}
-</table>
+</div>
+</div>
 ...
 </div>
 <hr style="width: 100%; border: 2px solid gray;">
 
-<h1 padding=0>Summary</h1>
+<h2>Summary</h2>
 <div id="box">
 I am a computational modeller, theory-builder & data scientist/machine learning researcher interested in
 <ul>

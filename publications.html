@@ -3,38 +3,25 @@ layout: default
 ---
 <img src="img/matta_mashup.jpg" style="max-width:100%;height:auto;" align="middle">
 
-<table id="billiards" width="100%" align="right">
-<tr>
-<td width="260px" >
-<!-- <hr style="border: 10px solid gray; border-radius: 5px;">s
-<hr style="border: 5px dashed gray; border-radius: 5px;"> -->
-<h0 id="publications" padding=0>Publications</h0>
-</td>
-<td><!--  valign="middle"> -->
-<canvas id="canvas" height="40" width="650"></canvas>  <!-- background: url('img/matta_mashup.jpg')"  -->
-</td>
-</tr>
-</table>
+<div id="billiards">
+<h1 id="publications">Publications</h1>
+<canvas id="canvas" height="40" width="650"></canvas>
+</div>
 <div>
     <br>
     <br>
     <br>
 Also see my <a href="https://scholar.google.de/citations?user=-EHSwJ4AAAAJ&hl=en&oi=ao">google scholar profile</a>.
 </div>
-<!-- <h1 id="publications">Publications & preprints</h1> -->
-<table width="100%" valign="top" id="albums" cellspacing="0">
+<div class="pub-list">
 {% for pub in site.data.publications %}
-<tr>
-    <td width="20%">
-    {% if pub.image and pub.image != "" %}<img src="{{ pub.image }}" style="max-width:90%;height:auto;" align="left">{% endif %}
-    </td>
-    <td>
-        <b>{{ pub.title }}</b><br>
-        {% if pub.author and pub.author != "" %}{{ pub.author }}<br>{% endif %}
-        {% if pub.journal and pub.journal != "" %}<em>{{ pub.journal }}</em> {% endif %}({{ pub.year }}). <br>
-        <small>[&nbsp;{% for l in pub.links %}<a href="{{ l.url }}">{{ l.label }}</a>{% unless forloop.last %}&nbsp;|&nbsp;{% endunless %}{% endfor %}&nbsp;]</small>
-    </td>
-</tr>
+<article class="pub-card{% unless pub.image and pub.image != "" %} pub-card--no-image{% endunless %}">
+    {% if pub.image and pub.image != "" %}<img src="{{ pub.image }}" alt="" loading="lazy">{% endif %}
+    <div>
+        <h2>{{ pub.title }}</h2>
+        <p class="pub-meta">{% if pub.author and pub.author != "" %}{{ pub.author }}{% endif %}{% if pub.journal and pub.journal != "" %} · <em>{{ pub.journal }}</em>{% endif %} ({{ pub.year }})</p>
+        <p class="pub-links">{% for l in pub.links %}<a href="{{ l.url }}">{{ l.label }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+    </div>
+</article>
 {% endfor %}
-
-</table>
+</div>
