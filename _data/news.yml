@@ -1,0 +1,203 @@
+- date: 2026-07-01
+  text: 'Two ICML main conference position papers! A call for better evals of LLM social sims, and a call to better evaluate collusion in market agents. Check <a href="https://icml.cc/virtual/2026/papers.html?search=Maximilian+Puelma+Touzel&filter=author">them</a> out and see us in Korea!'
+
+- date: 2026-06-01
+  text: 'To celebrate 6-months, STAMINA is doing <a href="youtube.com/watch?v=rGPOAAI75IA&feature=youtu.be">STAMINA Matters!</a>, an info session on all our activities.'
+
+- date: 2026-05-01
+  text: 'Welcome to two summer interns Shirley and Shiyan!'
+
+- date: 2026-05-01
+  text: 'Gave a talk on Cognitive Effort and LLMs to the <a href="https://ottolab.persona.co/">Otto lab</a> at McGill Department of Psychology.'
+
+- date: 2026-04-01
+  text: '2nd edition of LLM social sim Workshop accepted to COLM 2026. See you in SF in October!'
+
+- date: 2026-03-01
+  text: 'Participated in the <a href="https://ivado.ca/en/events/social-reasoning-and-the-ecology-of-thought/"> IVADO Social Reasoning and the Ecology of Thought Workshop</a> focussing on agent sociology as part of IVADO''s Thematic Semester on Computational Ingredients of Reasoning. Great Event!'
+
+- date: 2026-01-01
+  text: 'Kicking off the <a href="https://www.complexdatalab.com/stamina/">STAMINA</a> working group.'
+
+- date: 2025-10-01
+  text: 'Participated in the <a href="https://ivado.ca/en/events/bootcamp-focusing-on-the-current-state-of-agents/"> IVADO Agents Workshop </a> focussing on the Current State of AI agents as part of IVADO''s Thematic Semester on Autonomous AI agents.'
+
+- date: 2025-10-01
+  text: 'Very happy to deliver our <a href="https://sites.google.com/view/social-sims-with-llms/home?authuser=1">Workshop on Social Simulation with LLMs</a>.'
+
+- date: 2025-08-01
+  text: 'Participated in the week-long bootcamp <a href="https://ivado.ca/en/events/bootcamp-focusing-on-the-current-state-of-agents/">Focussing on the Current State of AI agents</a> as part of IVADO''s Thematic Semester on Autonomous AI agents.'
+
+- date: 2025-08-01
+  text: 'Presented by social simulation work and Veracity app demo papers accepted to main <a href="https://2025.ijcai.org/montreal-demo-track-accepted-papers/">IJCAI conference</a>.'
+
+- date: 2025-07-01
+  text: 'Zachary presented our social simulation work at the <a href="https://sites.google.com/view/nlp4positiveimpact">NLP for Positive Impact</a> workshop at ACL 2025 in Vienna.'
+
+- date: 2025-07-01
+  text: 'Submitted TRUTH-RAG work to SOLAR workshop at COLM 2025.'
+
+- date: 2025-06-01
+  text: 'The group welcomes Sneheel Sarangi as an incoming CS Master''s student at McGill in the Fall. Sneheel will continue to work on the social simulation project. Exciting!'
+
+- date: 2025-05-01
+  text: 'COLM workshop of LLM-based social simulations accepted! See you in October!'
+
+- date: 2025-05-01
+  text: 'Presented Social Simulation project to the Multi-agent Seminar at Deepmind'
+
+- date: 2025-04-01
+  text: 'Submitted BluePrint (BlueSky persona) work!'
+
+- date: 2025-04-01
+  text: 'Social Simulation project has been awarded an FLI grant!'
+
+- date: 2025-03-01
+  text: 'Social Simulation project has been awarded an IVADO exploratory grant!'
+
+- date: 2025-02-01
+  text: 'Happy to present social simulation work at the <a href="https://csdc-cecd.ca/">Centre for the Study of Democratic Citizenship</a>''s seminar series. <a href="https://www.crim.ca/fr/">CRIM</a>.'
+
+- date: 2025-01-01
+  text: 'Happy to share my thoughts on misinformation as a panelist at the Information Integrity Lab''s <a href="https://infolab.uottawa.ca/IIL/Climate-Mis-Disinformation-Workshop.aspx">Climate Mis/Disinformation Workshop</a> hosted at <a href="https://www.crim.ca/fr/">CRIM</a>.'
+
+- date: 2024-12-01
+  text: 'We present Social Simulation work at 3 NeurIPS workshops (<a href="https://solar-neurips.github.io/">Socially Responsible Language Modelling Research</a> (poster), <a href="https://safegenaiworkshop.github.io/">Safe Generative AI</a> (poster), and <a href="https://www.mlsafety.org/events/neurips/2024">Towards Safe & Trustworthy Agents</a> (Oral)). Congrats to the team!'
+
+- date: 2024-11-01
+  text: 'We got a <a href="https://foresight.org/">Foresight Institute</a> grant to study AI collusion.'
+
+- date: 2024-10-01
+  text: 'Happy to be affiliated with the <a href="https://complexdatalab.com/">Complex Data Lab</a>.'
+
+- date: 2024-09-01
+  text: 'Happy to join the <a href="https://csdc-cecd.ca/"> Centre for the Study of Democratic Citizenship</a> as a research member.'
+
+- date: 2024-09-01
+  text: 'Very happy on this first of a series: "A Simulation System Towards Solving Societal-Scale Manipulation" accepted at the NeurIPS Workshops: <a href="https://solar-neurips.github.io/">Socially Responsible Language Modelling Research</a>, <a href="https://safegenaiworkshop.github.io/">Safe Generative AI</a>, and <a href="https://www.mlsafety.org/events/neurips/2024">Towards Safe & Trustworthy Agents</a> (Selected fro an Oral presentation!!) Here is the <a href="https://arxiv.org/abs/2410.13915">preprint</a>.'
+
+- date: 2024-08-01
+  text: '"Regional and Temporal Patterns of Partisan Polarization during the COVID-19 Pandemic in the United States and Canada" submitted! Here is the <a href="https://arxiv.org/abs/2407.02807">preprint</a>.'
+
+- date: 2024-07-01
+  text: 'ClimateMatch running again this year. Continuing as Day Lead for the socioeconomic curriculum, we''ve revamped the curriculum for the day. We leaned a fair bit on the <a href="https://en-roads.climateinteractive.org/scenario.html?v=24.7.0">Enroads simulator</a>. Try it out.'
+
+- date: 2024-05-01
+  text: 'Workshop paper on <it>Scalable approaches to the theory of many minds</it> problem accepted to the <a href="https://sites.google.com/view/amw-2024/accepted-papers?authuser=0"><it>Agentic Markets Workshop</it></a> at <it>ICML</it>.'
+
+- date: 2024-04-01
+  text: 'Carbon tax topic modelling work <a href="https://www.cambridge.org/core/journals/environmental-data-science/article/ideology-from-topic-mixture-statistics-inference-method-and-example-application-to-carbon-tax-public-opinion/B06619E3412D326292200B8B263727A5">published</a> in <it>Environmental Data Science</it>.'
+
+- date: 2023-11-01
+  text: 'Gave a talk on using topic models on survey responses to infer ideology underpinning carbon tax opposition. This was at the <a href="https://www.climatechange.ai/events/aaaifss2023#schedule">CCAI workshop AAAI</a> on <it>Artificial Intelligence and Climate: The Role of AI in a Climate-Smart Sustainable Future</it> at the <it>AAAI Fall symposium</it> in Washington, DC.'
+
+- date: 2023-08-01
+  text: 'Gave a 2-part talk on Transition Narratives and complex coordination problems at the ClimateMatchAcademy Monthly Seminar. (<a href="https://youtu.be/JYwAJUd5ueE?si=rwP7_gI4nSaZTcEr">Part 1</a>; <a href="https://youtu.be/-wnu7vVpBy0?si=IhyHveZiZNhEvPR7">Part 2</a>).'
+
+- date: 2023-07-01
+  text: '<a href="https://academy.climatematch.io/about">Climate Match Academy</a> is alive and running! Delivered a day of socioeconomic curriculum and organized our Discord server of 100s of students from over 100 countries! Check out our always-accessible-from-anywhere <a href="https://comptools.climatematch.io/tutorials/intro.html">Jupyter Book</a>.'
+
+- date: 2023-06-01
+  text: 'Presented game theory of social norms work to Joel Leibo''s group at Deepmind.'
+
+- date: 2022-12-01
+  text: 'Presenting <a href="https://www.climatechange.ai/papers/neurips2022/60">topic modelling</a> at NeurIPS Workshop Tackling Climate Change with Machine Learning.'
+
+- date: 2022-11-01
+  text: 'Giving a talk (open to the public) at University of Washington''s <a href="https://escience.washington.edu/events/uwdss-touzel/">data science seminar</a> (<a href="https://youtu.be/c6x1Q-tj-Ss">recording</a>).'
+
+- date: 2022-10-01
+  text: 'Attended the IBM/DIMACS <a href="http://dimacs.rutgers.edu/events/details?eID=2241">Workshop on Bridging Game Theory and Machine Learning for Multi-party Decision Making</a> at Rutgers.'
+
+- date: 2022-09-01
+  text: 'Giving a talk at the <a href="https://mcqll.org/">Montreal Computational & Quantitative Linguistics Lab </a>.'
+
+- date: 2022-09-01
+  text: 'Presenting carbon tax work for the first time at the <a href="http://montrealaisymposium.com/">Montreal AI Symposium</a>!'
+
+- date: 2022-09-01
+  text: 'Meriem''s NoisET paper got accepted in Physical Chemistry A!'
+
+- date: 2022-09-01
+  text: 'Our mixing times paper was accepted to NeurIPS!'
+
+- date: 2022-06-01
+  text: 'RLDM2022 was great! Presented urgency work and ran our workshop on social alignment in human and machines. Workshop recording available on <a href="https://sites.google.com/mila.quebec/soc-rldm/home">workshop website</a>.'
+
+- date: 2022-05-01
+  text: 'Urgency work <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010080">published</a> in PLoS Computational Biology.'
+
+- date: 2022-04-01
+  text: 'Presented our agent abstraction paper at ICLR workshop: <a href="https://sites.google.com/view/collective-learning"><em>From cells to societies: learning across scales</em></a>.'
+
+- date: 2022-03-01
+  text: 'Gave a couple guest lectures in graduate-level math course on dynamical systems at UdeM. So nice to have the time in a talk to spell things out and discuss with students!'
+
+- date: 2022-02-01
+  text: 'Lyapunov spectra for RNNs <a href="https://doi.org/10.3389/fams.2022.818799">paper accepted</a> to Frontiers in Applied Mathematics & Statistics'
+
+- date: 2022-01-01
+  text: '2 accepted submissions to <a href="https://www.cosyne.org/">COSYNE</a>: the neurodata validation of our decision-making model; and new work on noise robustness in recurrent neural nets with Colin Bredenberg.'
+
+- date: 2022-01-01
+  text: 'Gave a talk on computing with transients at the <a href="https://www.birs.ca/events/2022/5-day-workshops/22w5047/schedule">Banff workshop</a> on Dynamical Principles of Biological and Artificial Neural Networks.'
+
+- date: 2021-12-01
+  text: 'Presented polynomial mixing times work at <a href="https://sites.google.com/view/ecorl2021/home?authuser=0">EcoRL workshop</a> at NeurIPS. See the <a href="https://arxiv.org/abs/2112.07066">preprint</a>.'
+
+- date: 2021-11-01
+  text: 'Participated in Montreal''s <a href="https://www.main2021.org/">MAIN</a> neuroAI conference.'
+
+- date: 2021-10-01
+  text: 'Presented poster at <a href="http://montrealaisymposium.com/">Montreal''s AI Symposium</a>.'
+
+- date: 2021-09-01
+  text: 'post on Mila <a href="https://mila.quebec/en/neural-ai-reading-group-winter-semester-2021-recap/">blog post</a> on our NeuroAI reading group.'
+
+- date: 2021-08-01
+  text: 'Urgency work out as a <a href="https://www.biorxiv.org/content/10.1101/2021.07.31.452742v1">preprint</a>! Twitter summary thread <a href="https://twitter.com/mptouzel/status/1422262812693434374?s=20">here</a>.'
+
+- date: 2021-05-01
+  text: 'Gave a <a href="https://umontreal.zoom.us/rec/play/rZOe6DTE_Pjw-XY0_6vnSljxmpZD0lofswX2db4KbbF1i6zg2VqImXI6iDP6iwKfJdYR_cQxB0gR4rqR.69VNYXhWGy4aLto4?continueMode=true&_x_zm_rtaid=l7x44w80Qo2NzF66O4ZfTA.1648247768967.b5bd9133398959dd4d7ef1dc6448db17&_x_zm_rhtaid=626">talk</a> on Stochastic Thermodynamics of learning to the Physics of Machine learning reading group at Mila.'
+
+- date: 2021-01-01
+  text: 'Urgency work peer-reviewed and accepted at <a href="http://www.cosyne.org/c/index.php?title=Cosyne_21">COSYNE</a>.'
+
+- date: 2021-02-01
+  text: 'Join us for a exciting day of talks and a panel of top experts on the goals and challenges for robust scientific <a href="https://sites.google.com/mila.quebec/senai/home">explanations in neural and artificial intelligence</a> systems.'
+
+- date: 2020-12-01
+  text: 'Urgency work peer-reviewed and accepted at the <a href="https://sites.google.com/view/biologicalandartificialrl">Biological and Artificial Reinforcement Learning workshop</a> at NeurIPS.'
+
+- date: 2020-12-01
+  text: '<a href="https://sites.google.com/view/main2020/">Montreal Artificial Intelligence and Neuroscience 2020</a> conference.'
+
+- date: 2020-11-01
+  text: 'Presented urgency work at the inaugural NeuroAI conference, <a href="https://meetings.cshl.edu/meetings.aspx?meet=naisys&year=20">NAISYS</a>, at Cold Spring Harbor Labs.'
+
+- date: 2020-05-01
+  text: 'Happy to lead the breakout session on higher cognition at <a href="https://sites.google.com/view/unique-neuro-ai/news?authuser=0">UNIQUE</a>''s inaugural NeuroAI symposium.'
+
+- date: 2020-04-01
+  text: 'Check out our <a href="https://arxiv.org/pdf/2006.14123.pdf">preprint</a> on Lyapunov spectra for RNN training.'
+
+- date: 2020-04-01
+  text: 'Our work on inferring population dynamics from intrinsically variable, vastly subsampled, and indirectly accessed genetic sequences is <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007873">published</a> in PLoS Computational Biology.'
+
+- date: 2020-03-01
+  text: 'We are presenting our decision-making work in collaboration with the <a href="http://www.cisek.org/pavel/">Cisek Lab</a> at <a href="http://www.cosyne.org/c/index.php?title=Cosyne_20">COSYNE</a>.'
+
+- date: 2019-12-01
+  text: 'We are organizing a <a href="https://sites.google.com/mila.quebec/neuroaiworkshop">NeuroAI workshop</a> at NeurIPS2019.'
+
+- date: 2019-12-01
+  text: 'nnRNN paper presented in main track of NeurIPS.'
+
+- date: 2019-11-01
+  text: 'With yet another wonderful edition of the <a href="http://www.crm.umontreal.ca/2019/MAIN2019/index_e.php">Montreal Artificial Intelligence and Neuroscience (MAIN)</a> conference, Montreal is further establishing itself as the hotbed for incisive NeuroAI research. Honoured to have my new postdoc work recognized with two awards here.'
+
+- date: 2019-05-01
+  text: 'We are organizing a <a href="https://sites.google.com/mila.quebec/neuroaiworkshop">Physics and AI Workshop</a> in Montreal.'
+
+- date: 2019-01-01
+  text: 'family_size+=1!'
