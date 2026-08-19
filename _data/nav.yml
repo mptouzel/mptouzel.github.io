@@ -1,0 +1,15 @@
+- title: "Max Puelma Touzel"
+  url: /
+  home: true
+- title: research
+  url: /research.html
+- title: publications
+  url: /publications.html
+- title: teaching/service
+  url: /teachingservice.html
+- title: cv/bio
+  url: /cv.html
+- title: blog
+  url: /blog.html
+- title: climate change
+  url: /climaction.html
