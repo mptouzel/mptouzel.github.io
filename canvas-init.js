@@ -6,8 +6,9 @@
  * (position clamped, velocity reversed) on the frame it's reached -- so
  * it's visibly seen rebounding, giving the compression-wave-reflects look
  * -- but is then marked and removed at the start of the next frame, so
- * density falls across the canvas as balls exit over time. Re-skinned per
- * the design system: --signal at low opacity, no stroke. Respects
+ * density falls across the canvas as balls exit over time, until the whole
+ * wave is cleared for good 15s after it starts. Re-skinned per the design
+ * system: --signal at low opacity, no stroke. Respects
  * prefers-reduced-motion by drawing a single static frame instead of
  * animating.
  */
@@ -135,7 +136,14 @@
       return;
     }
 
+    var startTime = performance.now(),
+        lifespan = 15000; // ms -- the whole wave clears after this, for good.
+
     (function drawFrame () {
+      if (performance.now() - startTime > lifespan) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        return;
+      }
       window.requestAnimationFrame(drawFrame);
       step();
       render();
