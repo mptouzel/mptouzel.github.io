@@ -34,7 +34,12 @@ body {
 
 a {
   color: var(--signal);
-  text-decoration: none;
+  /* Underlined at rest: --signal on --ink body text is only 2.82:1
+     contrast, short of the 3:1 WCAG minimum for color-only link
+     distinction, so links embedded in prose need a non-color cue too.
+     Components with their own visual separation from body text (nav,
+     publication link chips) opt back out below. */
+  text-decoration: underline;
 }
 a:hover {
   text-decoration: underline;
@@ -222,6 +227,9 @@ td, th {
   color: var(--graphite);
   font-size: 90%;
   margin: var(--space-1) 0;
+}
+.pub-links a {
+  text-decoration: none;
 }
 .pub-links {
   font-family: var(--font-mono);
