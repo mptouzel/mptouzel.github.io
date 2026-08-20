@@ -258,7 +258,7 @@
 
         // Set earth image source after the DOM is loaded
         window.addEventListener('DOMContentLoaded', () => {
-            earth.src = "earth-countries-256-slow.gif";
+            earth.src = "media/earth-countries-256-slow.gif";
 
             // Wait for both image load and first paint before initializing
             Promise.all([
@@ -287,7 +287,7 @@
             });
 
             // Set audio source - replace with your actual MP3 file URL
-            backgroundAudio.src = "The Destroyer - Total Hate (Over 300 BPM).mp3";
+            backgroundAudio.src = "media/The Destroyer - Total Hate (Over 300 BPM).mp3";
 
             // Set initial audio state
             audioControl.classList.add('muted');
