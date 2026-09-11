@@ -1,3 +1,14 @@
+- title: "Role differentiation as ignition of a collective information engine: Structuration in Agent Populations"
+  author: "Puelma Touzel M."
+  journal: ""
+  year: 2026
+  image: img/papers/role_diff_fig2a.png
+  links:
+    - label: preprint
+      url: https://arxiv.org/abs/2609.05442
+    - label: code
+      url: https://github.com/mptouzel/role_diff
+
 - title: "EASE Configuration Facilitates A Reproducible Science of LLM Social Simulations"
   author: "Sarangi S, Puelma Touzel M, Bück-Kaeffer A, Yang Z, Godbout JF, Rabbany R"
   journal: ""
