@@ -32,7 +32,7 @@
 // Apply the saved theme before first paint so there's no light-mode flash.
 try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
-<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/style.css?v={{ site.time | date: '%s' }}" rel="stylesheet" type="text/css">
 <link rel="site.standard.publication" href="at://did:plc:54ehcijq3tcvfhvzavg2aqdx/site.standard.publication/3mlthqqntx223">
 <!-- <link href="css/css5.css" rel="stylesheet" type="text/css"> -->
 
@@ -83,9 +83,9 @@ try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dat
   sync();
 })();
 </script>
-<script src="js/utils.js"></script>
-<script src="js/ball.js"></script>
-<script src="js/canvas-init.js"></script>
+<script src="js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<script src="js/ball.js?v={{ site.time | date: '%s' }}"></script>
+<script src="js/canvas-init.js?v={{ site.time | date: '%s' }}"></script>
 
 </body>
 </html>
