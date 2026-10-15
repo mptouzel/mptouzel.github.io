@@ -35,6 +35,15 @@
       balls.push(ball);
     }
 
+    // Recolour the balls when the theme toggles (they read --signal once
+    // at creation).
+    window.addEventListener('themechange', function () {
+      var c = getComputedStyle(document.documentElement).getPropertyValue('--signal').trim() || '#1F6F6B';
+      fillColor = utils.colorToRGB(c, 0.35);
+      balls.forEach(function (b) { b.color = fillColor; });
+      if (reduceMotion) { render(); }
+    });
+
     function rotate (x, y, sin, cos, reverse) {
       return {
         x: (reverse) ? (x * cos + y * sin) : (x * cos - y * sin),

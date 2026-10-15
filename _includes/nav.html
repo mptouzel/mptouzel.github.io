@@ -1,4 +1,5 @@
 <div id="topbar">
 {% for item in site.data.nav %}<div class="navbox"><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} class="active"{% endif %}>{% if item.home %}<b>{{ item.title }}</b>{% else %}{{ item.title }}{% endif %}</a></div>
-{% endfor %}<div id="backtotop"><a href="{{ '/' | relative_url }}#top">↑</a></div>
+{% endfor %}<button id="themetoggle" type="button" aria-label="Toggle dark mode">☾</button>
+<div id="backtotop"><a href="{{ '/' | relative_url }}#top">↑</a></div>
 </div>

@@ -28,6 +28,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<script>
+// Apply the saved theme before first paint so there's no light-mode flash.
+try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link rel="site.standard.publication" href="at://did:plc:54ehcijq3tcvfhvzavg2aqdx/site.standard.publication/3mlthqqntx223">
 <!-- <link href="css/css5.css" rel="stylesheet" type="text/css"> -->
@@ -51,6 +55,34 @@
 <img src="img/graphic.jpg" style="width:240px;height:60px;" alt="Site motif: gear, brain, neural network, and globe icons">
 </div>
 
+<script>
+(function () {
+  var btn = document.getElementById('themetoggle'),
+      root = document.documentElement,
+      mq = window.matchMedia('(prefers-color-scheme: dark)');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : mq.matches;
+  }
+  function sync() {
+    var dark = isDark();
+    btn.textContent = dark ? '☀' : '☾';
+    btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('aria-pressed', dark);
+  }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    sync();
+    window.dispatchEvent(new Event('themechange'));
+  });
+  mq.addEventListener('change', function () {
+    sync();
+    window.dispatchEvent(new Event('themechange'));
+  });
+  sync();
+})();
+</script>
 <script src="js/utils.js"></script>
 <script src="js/ball.js"></script>
 <script src="js/canvas-init.js"></script>

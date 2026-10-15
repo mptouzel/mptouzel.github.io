@@ -1,3 +1,12 @@
+- title: "From Rage to Refusal: Using Social-Media Data to Steer Hostility-Related Affect in LLMs"
+  author: "Krishnakumar G, Puelma Touzel M, Yang Z, Rabbany R, Godbout JF"
+  journal: "BlackboxNLP Workshop @ EMNLP 2026"
+  year: 2026
+  image: img/papers/rage_bubble.png
+  links:
+    - label: "workshop paper"
+      url: https://blackboxnlp.github.io/2026/accepted_papers/
+
 - title: "Role differentiation as ignition of a collective information engine: Structuration in Agent Populations"
   author: "Puelma Touzel M."
   journal: ""

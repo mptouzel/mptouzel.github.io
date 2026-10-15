@@ -1,3 +1,12 @@
+- date: 2026-10-01
+  text: 'Gave a talk on multi-agent theory to <a href="https://ganguli-gang.stanford.edu/">Surya Ganguli''s group</a> at Stanford.'
+
+- date: 2026-10-01
+  text: 'Hosted the 2nd edition of our <a href="https://sites.google.com/view/social-sims-with-llms/social-sim26?authuser=1">Workshop on Social Simulation with LLMs</a> at COLM 2026 in San Francisco. Thanks to all the speakers and participants!'
+
+- date: 2026-10-01
+  text: '"From Rage to Refusal: Using Social-Media Data to Steer Hostility-Related Affect in LLMs" accepted to the <a href="https://blackboxnlp.github.io/2026/accepted_papers/">BlackboxNLP 2026</a> workshop at EMNLP.'
+
 - date: 2026-07-01
   text: 'Two ICML main conference position papers! A call for better evals of LLM social sims, and a call to better evaluate collusion in market agents. Check <a href="https://icml.cc/virtual/2026/papers.html?search=Maximilian+Puelma+Touzel&filter=author">them</a> out and see us in Korea!'
 
