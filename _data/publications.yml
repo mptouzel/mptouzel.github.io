@@ -1,3 +1,12 @@
+- title: "A Framework for Context Enrichment and Selective Robustness in LLM Social Agents"
+  author: "Greiche M, Rabbany R, Puelma Touzel M."
+  journal: "SocialAgent Workshop @ NeurIPS 2026"
+  year: 2026
+  image: img/papers/context_enrichment.svg
+  links:
+    - label: preprint
+      url: https://arxiv.org/abs/2611.06914
+
 - title: "From Rage to Refusal: Using Social-Media Data to Steer Hostility-Related Affect in LLMs"
   author: "Krishnakumar G, Puelma Touzel M, Yang Z, Rabbany R, Godbout JF"
   journal: "BlackboxNLP Workshop @ EMNLP 2026"
@@ -9,7 +18,7 @@
 
 - title: "Role differentiation as ignition of a collective information engine: Structuration in Agent Populations"
   author: "Puelma Touzel M."
-  journal: ""
+  journal: "arXiv preprint"
   year: 2026
   image: img/papers/role_diff_fig2a.png
   links:
@@ -20,7 +29,7 @@
 
 - title: "EASE Configuration Facilitates A Reproducible Science of LLM Social Simulations"
   author: "Sarangi S, Puelma Touzel M, Bück-Kaeffer A, Yang Z, Godbout JF, Rabbany R"
-  journal: ""
+  journal: "Under review"
   year: 2026
   image: img/papers/EASE.png
   links:
@@ -29,30 +38,39 @@
 
 - title: "Position: Time to Close The Validation Gap in LLM Social Simulations"
   author: "Puelma Touzel M, Sarangi S, Bück-Kaeffer A, Yang Z, Godbout JF, Rabbany R"
-  journal: "ICML"
+  journal: "ICML 2026 (position paper)"
   year: 2026
   image: img/papers/ICMLvalidpos.png
   links:
-    - label: "Conf proc."
+    - label: proceedings
       url: https://icml.cc/virtual/2026/poster/67174
 
 - title: "Position: Collusion Risks Among AI Reasoning Agents Justify Certification Requirements for Making Market Decisions"
   author: "Riemer M, Tosato T, Memarian A, Puelma Touzel M, Berseth G, Rish I, Dumas G"
-  journal: "ICML"
+  journal: "ICML 2026 (position paper)"
   year: 2026
   image: img/papers/ICMLcollusion.jpeg
   links:
-    - label: "Conf proc."
+    - label: proceedings
       url: https://icml.cc/virtual/2026/poster/67141
 
 - title: "The fitness landscape of social norms in social dilemmas"
   author: "Puelma Touzel M."
-  journal: ""
+  journal: "arXiv preprint"
   year: 2026
   image: img/papers/example_traj_small.png
   links:
-    - label: "pre-preint"
+    - label: "preprint"
       url: https://arxiv.org/abs/2605.18834
+
+- title: "Regional and Temporal Patterns of Partisan Polarization during the COVID-19 Pandemic in the United States and Canada"
+  author: "Yang Z, Imouza A, Puelma Touzel M, Amadoro C, Desrosiers-Brisebois G, Pelrine K, Levy S, Godbout JF, Rabbany R."
+  journal: "PLOS ONE"
+  year: 2026
+  image: img/Average_Weekly_Vaccine_Polarization.png
+  links:
+    - label: journal
+      url: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0347327
 
 - title: "BluePrint: A Social Media User Dataset for LLM Persona Evaluation and Training"
   author: "Bück-Kaeffer A, Chooi JQ, Zhao D, Puelma Touzel M, Pelrine K, Godbout JF, Rabbany R, Yang Z"
@@ -65,11 +83,11 @@
 
 - title: "TRUTH: Teaching LLMs to Rerank for Truth in Misinformation Detection"
   author: "Yu H, Huang S, Yang Z, Puelma Touzel M, Pelrine K, Godbout JF, Rabbany R"
-  journal: "To be presented at SOLAR workshop @ COLM"
+  journal: "SoLaR Workshop @ COLM 2025"
   year: 2025
   image: img/papers/TRUTH.png
   links:
-    - label: preprint
+    - label: "workshop paper"
       url: https://openreview.net/pdf?id=S8TNODptF7
 
 - title: "Veracity: An Open-Source AI Fact-Checking System"
@@ -96,21 +114,14 @@
 
 - title: "A Simulation System Towards Solving Societal-Scale Manipulation"
   author: "Puelma Touzel M∗, Sarangi S∗, Welch A∗, Krishnakumar G, Zhao D, Yang Z, Yu H, Kosak-Hine E, Gibbs T, Musulan A, Thibault C, Rabbany R, Godbout JF, Pelrine K."
-  journal: "NeurIPS SOLAR, SATA, and Safe Generative AI Workshops"
+  journal: "NeurIPS 2024 Workshops: SoLaR, SATA (oral), Safe Generative AI"
   year: 2024
   image: img/dashboard_snapshot2.png
   links:
     - label: preprint
       url: https://arxiv.org/abs/2410.13915
-
-- title: "Regional and Temporal Patterns of Partisan Polarization during the COVID-19 Pandemic in the United States and Canada"
-  author: "Yang Z, Imouza A, Puelma Touzel M, Amadoro C, Desrosiers-Brisebois G, Pelrine K, Levy S, Godbout JF, Rabbany R."
-  journal: "submitted"
-  year: 2024
-  image: img/Average_Weekly_Vaccine_Polarization.png
-  links:
-    - label: journal
-      url: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0347327
+    - label: "workshop paper"
+      url: https://mlanthology.org/neuripsw/2024/touzel2024neuripsw-simulation
 
 - title: "Scalable Approaches to a theory of many minds"
   author: "Puelma Touzel M*, Me'marian A*, Riemer M, Mircea A, Williams A, Ahlstrand E, Lehnert L, Bhati R, Dumas G, Rish I."
@@ -127,7 +138,7 @@
   year: 2024
   image: img/papers/2022topmod.png
   links:
-    - label: "Journal paper"
+    - label: journal
       url: https://www.cambridge.org/core/journals/environmental-data-science/article/ideology-from-topic-mixture-statistics-inference-method-and-example-application-to-carbon-tax-public-opinion/B06619E3412D326292200B8B263727A5
     - label: "workshop paper"
       url: https://www.climatechange.ai/papers/neurips2022/60
@@ -158,7 +169,7 @@
   links:
     - label: proceedings
       url: https://openreview.net/pdf?id=Ikl-prGbDFU
-    - label: "workshop paper"
+    - label: preprint
       url: https://arxiv.org/abs/2112.07066
 
 - title: "Deliberation gated by opportunity cost adapts to context with urgency"
@@ -172,8 +183,8 @@
     - label: "supp. video"
       url: media/PGD_example_simulation.mp4
 
-- title: "On Lyapunov Exponents for RNNs: Understanding information propogation using dynamical systems tools"
-  author: "Puelma Touzel M*, Vogt R*, Shlizerman E, Lajoie G."
+- title: "On Lyapunov Exponents for RNNs: Understanding Information Propagation Using Dynamical Systems Tools"
+  author: "Vogt R*, Puelma Touzel M*, Shlizerman E, Lajoie G."
   journal: "Frontiers in Applied Mathematics & Statistics"
   year: 2022
   image: img/papers/jac_prod_diagram.png
@@ -191,7 +202,7 @@
       url: https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007873
 
 - title: "Non-normal Recurrent Neural Network (nnRNN): learning long time dependencies while improving expressivity with transient dynamics"
-  author: "Goyette K, Kerg GC, Puelma Touzel M, Gidel G, Vorontsov E, Bengio Y, Lajoie G."
+  author: "Kerg G, Goyette K, Puelma Touzel M, Gidel G, Vorontsov E, Bengio Y, Lajoie G."
   journal: "NeurIPS"
   year: 2019
   image: img/papers/2019nnRNN.png
@@ -238,14 +249,14 @@
   year: 2017
   image: img/papers/2017invasion.png
   links:
-    - label: journal
+    - label: chapter
       url: http://doi.org/10.1016/bs.aecr.2016.11.002
     - label: pdf
       url: "pdf/Murall et al. - Networks of Invasion Empirical Evidence and Case Studies - 2017.pdf"
 
 - title: "Cellular dynamics and stable chaos in balanced networks"
-  author: ""
-  journal: "PhD Thesis, University of Goettingen"
+  author: "Puelma Touzel M."
+  journal: "PhD Thesis, University of Göttingen"
   year: 2015
   image: img/papers/2015thesis.png
   links:

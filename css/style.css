@@ -337,3 +337,34 @@ td, th {
   left: 300px;
   border: 1px solid var(--line);
 }
+
+/* Figures with transparent backgrounds (dark lines and text) disappear on the
+   dark theme, so in dark mode they sit on a light card. Light mode is unchanged. */
+:root[data-theme="dark"] .pub-card img,
+:root[data-theme="dark"] .parent img,
+:root[data-theme="dark"] .parent iframe {
+  background: #FFFFFF;
+  padding: 4px;
+  box-sizing: border-box;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pub-card img,
+  :root:not([data-theme="light"]) .parent img,
+  :root:not([data-theme="light"]) .parent iframe {
+    background: #FFFFFF;
+    padding: 4px;
+    box-sizing: border-box;
+  }
+}
+
+/* Year headings on the publications page */
+.pub-year {
+  margin: var(--space-4) 0 var(--space-2);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  color: var(--graphite);
+}
+.pub-meta strong {
+  color: var(--ink);
+}

@@ -148,6 +148,28 @@
             line-height: 1.5;
         }
 
+        /* Button back to the climate page */
+        .back-button {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 10px 22px;
+            color: white;
+            background-color: rgba(50, 50, 200, 0.85);
+            border: 2px solid white;
+            border-radius: 24px;
+            font-size: 16px;
+            text-decoration: none;
+            text-shadow: none;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        .back-button:hover,
+        .back-button:focus {
+            background-color: rgba(80, 80, 250, 0.95);
+            transform: scale(1.05);
+        }
+
         /* Mobile-specific adjustments */
         @media (max-width: 768px) {
             .earth {
@@ -174,6 +196,11 @@
                 font-size: 14px;
                 top: 40px;
             }
+
+            .back-button {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
@@ -183,6 +210,8 @@
         <div class="explanatory-text">
             Every second, our planet absorbs an equivalent of 300 city-destroying bomb's worth of heat from the sun. <br>
             Absorption is due to greenhouse gases in the atmosphere, the vast majority are there from us burning fossil fuels.
+            <br>
+            <a class="back-button" href="climaction.html#responses">Click to go back and learn more about what to do about it</a>
         </div>
 
         <div class="earth-container">
